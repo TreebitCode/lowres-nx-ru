@@ -1,0 +1,3491 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>Инструкция LowRes NX</title>
+<style>
+body {
+	font-family: sans-serif;
+}
+td, th {
+    padding-right: 1em;
+    vertical-align: top;
+}
+th {
+    text-align: left;
+}
+a {
+    text-decoration: none;
+    color: #055;
+}
+ul {
+    padding-left: 25px;
+}
+li {
+    margin-bottom: 0.5em;
+}
+h1 {
+	border-top: 6px solid black;
+	padding-top: 6px;
+	text-transform: uppercase;
+	clear: both;
+}
+h2 {
+	border-top: 2px solid black;
+	padding: 4px 0;
+	clear: both;
+}
+p + h1, ul + h1, pre + h1, table + h1, div + h1 {
+	margin-top: 3em;
+}
+p + h2, ul + h2, pre + h2, table + h2, div + h2 {
+	margin-top: 2em;
+}
+p + h3, ul + h3, pre + h3, table + h3, div + h3 {
+	margin-top: 1.5em;
+}
+.container {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 640px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.info-mobile, .info-desktop {
+	padding-left: 38px;
+	margin: 1em 0;
+	min-height: 30px;
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+.info-mobile {
+	background-image: url(изображения-инструкции/иконка_телефон.png);
+	background-image: -webkit-image-set(url(изображения-инструкции/иконка_телефон.png) 1x, url(изображения-инструкции/иконка_телефон@2x.png) 2x);
+}
+.info-desktop {
+	background-image: url(изображения-инструкции/иконка_компьютер.png);
+	background-image: -webkit-image-set(url(изображения-инструкции/иконка_компьютер.png) 1x, url(изображения-инструкции/иконка_компьютер@2x.png) 2x);
+}
+.illustration {
+	float: right;
+}
+.illustration-nofloat {
+	display: block;
+	float: none;
+}
+@media (max-width: 480px) {
+	.illustration, .illustration-nofloat {
+		display: block;
+		float: none;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+@media (max-width: 400px) {
+	.bigtable td {
+		font-size: 0.7em;
+	}
+    .container {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+.nobr {
+	white-space: nowrap;
+	hyphens: none;
+}
+.example {
+	background-color: #eee;
+	padding: 4px 0px 4px 4px;
+}
+@media (max-width: 320px) {
+	.example {
+		font-size: 0.9em;
+	}
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1 id="Introduction">Introduction</h1>
+
+<img class="illustration" src="изображения-инструкции/иллюстрация_привет.png" srcset="изображения-инструкции/иллюстрация_привет.png 1x, изображения-инструкции/иллюстрация_привет@2x.png 2x"/>
+
+<h3 id="Program-retro-games-in-BASIC">Program retro games in BASIC</h3>
+
+<p>Make your own retro games on a virtual game console. Program in the classic BASIC language and create sprites, tile maps, sound and music with the included tools. As a beginner you will quickly understand how to create simple text games or show your first sprite on a tile map. As an experienced programmer you can discover the full potential of retro hardware tricks!</p>
+
+<h3 id="Virtual-Game-Console">Virtual Game Console</h3>
+
+<p>Imagine LowRes NX as a handheld game console with a d-pad, two action buttons and a little rubber keyboard below a slidable touchscreen. LowRes NX was inspired by real 8- and 16-bit systems and simulates chips for graphics, sound and I/O, which actually work like classic hardware. It supports hardware sprites as well as hardware parallax scrolling, and even offers vertical blank and raster interrupts to create authentic retro effects.</p>
+
+<h3 id="Old-School-Programming">Old-School Programming</h3>
+
+<p>The programming language of LowRes NX is based on second-generation, structured BASIC. It offers all the classic commands, but with labels, loops and subprograms instead of line numbers. Graphics and sound are supported by additional commands and you can even access the virtual hardware directly using PEEK and POKE. You have complete control over the program flow, there is no standard update function to implement.</p>
+
+<h3 id="Creative-Tools">Creative Tools</h3>
+
+<p>LowRes NX includes all the tools you need: The Gfx Designer for editing sprites, tiles, fonts and maps, as well as the Sound Composer for music and sound effects. All of these are just normal BASIC programs. You can change and improve them or even create your own custom editors.</p>
+
+<h3 id="Share-and-Play">Share and Play</h3>
+
+<p>Send your games directly to other users or share them via the website. All programs are open source, so you can play them, learn from them and edit them. Do you prefer making just art or music? Share your creations as assets and let other programmers use them in their projects.</p>
+
+<img class="illustration-nofloat" src="изображения-инструкции/иллюстрация_открытая.png" srcset="изображения-инструкции/иллюстрация_открытая.png 1x, изображения-инструкции/иллюстрация_открытая@2x.png 2x"/>
+
+
+<h2 id="Specifications">Specifications</h2>
+
+<ul>
+<li>Cartridge ROM: 32 KB for gfx, music, any binary data</li>
+<li>Code: BASIC, max 16384 tokens</li>
+<li>Screen: 160x128 pixels, 60 Hz</li>
+<li>Backgrounds: Two layers, tile-based, scrollable</li>
+<li>Sprites: 64, max 32x32 pixels</li>
+<li>Colors: 8 dynamic 6-bit palettes with 4 colors each</li>
+<li>Sound: 4 voices, saw/tri/pulse/noise, pulse width, volume, ADSR, LFO</li>
+<li>Input: Two game controllers with d-pad and two buttons + pause</li>
+<li>Optional input: Keyboard and touchscreen/mouse</li>
+</ul>
+
+
+<h1 id="Contents">Содержание</h1>
+
+<ul>
+	<li><a href="#Getting-Started">Getting Started</a></li>
+	<li><a href="#Editing">Editing</a></li>
+	<li><a href="#Gfx-Designer">Gfx Designer</a></li>
+	<li><a href="#Sound-Composer">Sound Composer</a></li>
+	<li><a href="#Language-Basics">Основы языка</a></li>
+	<li><a href="#Program-Flow-Control">Program Flow Control</a></li>
+	<li><a href="#Text">Текст</a></li>
+	<li><a href="#User-Input">User Input</a></li>
+	<li><a href="#Graphics">Graphics</a></li>
+	<li><a href="#Sound">Sound</a></li>
+	<li><a href="#Data">Data</a></li>
+	<li><a href="#Memory-Access">Memory Access</a></li>
+	<li><a href="#Files">Файлы</a></li>
+	<li><a href="#Math-Functions">Математические функции</a></li>
+	<li><a href="#String-Functions">Строковые функции</a></li>
+	<li><a href="#System">Система</a></li>
+	<li><a href="#Advanced-Topics">Advanced Topics</a></li>
+</ul>
+
+
+<h1 id="Getting-Started">Getting Started</h1>
+
+<img class="illustration" src="изображения-инструкции/иллюстрация_игра.png" srcset="изображения-инструкции/иллюстрация_игра.png 1x, изображения-инструкции/иллюстрация_игра@2x.png 2x"/>
+
+<p>Try some of the included programs to see how LowRes NX
+can look like. Have a look at the action game <i>LowRes Galaxy 2</i>,
+the text adventure <i>LowRes Adventure</i>, and the demo <i>Star Scroller</i>.</p>
+
+<div class="info-mobile">
+On the "My Programs" screen select a program to open the source code
+editor. Then tap on the Play button to run it.
+</div>
+
+<div class="info-desktop">
+Find the examples in the folder "programs".  Open the LowRes NX
+application and drag and drop any .nx file into its window. You can
+also select LowRes NX as default application for .nx files, so
+programs can be started simply by double clicking them.
+</div>
+
+<p>Once you have played enough, you can create your first own program.</p>
+
+<div class="info-mobile">
+On the "My Programs" screen tap on the Plus button to create a new
+program. Select it to open the source code editor.
+</div>
+
+<div class="info-desktop">
+Use any text editor to create a new file.
+On Windows make sure the text editor supports Mac/Linux line ends,
+otherwise you may see everything in one line.
+</div>
+
+<p>Type these lines:</p>
+
+<pre class="example">
+PRINT "WELCOME!"
+PRINT "WHAT IS YOUR NAME?"
+INPUT ">";N$
+PRINT "HELLO ";N$;"!"
+</pre>
+
+<div class="info-desktop">
+Save your program file with a useful name and the extension ".nx".
+</div>
+
+<p>Now run your program. This is a little example using the keyboard.
+Let's try something with a gamepad. Create another new program and
+type this:</p>
+
+<pre class="example">
+GAMEPAD 1
+X=76
+Y=60
+DO
+  IF UP(0) THEN Y=Y-1
+  IF DOWN(0) THEN Y=Y+1
+  IF LEFT(0) THEN X=X-1
+  IF RIGHT(0) THEN X=X+1
+  SPRITE 0,X,Y,225
+  WAIT VBL
+LOOP
+</pre>
+
+<p>Run this program and you will see an "A" on the screen which you can
+move around using the gamepad.</p>
+
+<div class="info-mobile">
+With the program still running, tap the menu button on the top right
+and select "Capture Program Icon".
+Now exit the program and return to the "My Programs" screen. There
+you will see your program with a new image. Long tap the icon and
+select "Rename..." to give it a better name.
+</div>
+
+
+<h1 id="Editing">Editing</h1>
+
+<h2 id="Programs-And-Data">Programs and Data</h2>
+
+<img class="illustration" src="изображения-инструкции/иллюстрация_диск.png" srcset="изображения-инструкции/иллюстрация_диск.png 1x, изображения-инструкции/иллюстрация_диск@2x.png 2x"/>
+
+<p>A program file contains a complete game or application, including all
+its data, stored as simple text. The first part is the BASIC source code.
+Please read the programming chapters for further explanation.</p>
+
+<p>The second part are the cartridge ROM entries. These are up to 16
+numbered data blocks, which can contain any kind of data, for
+example graphics, level maps, music, etc. When a program is running,
+all its ROM entries are accessable in the first 32 KB of the memory.</p>
+
+<p>You can easily create and edit ROM entries by using tools.
+Tools are normal NX programs, but they are specifically
+made for editing data. They can access any NX file as a "virtual disk"
+and use its ROM entries like files.</p>
+
+<p>There are two ways of using tools:</p>
+
+<ul>
+<li>You can open tools directly like other NX programs. They will use
+the "Disk.nx" file in the tool's folder for loading and saving their
+data.</li>
+<li>You can open any program you want to edit and select a tool from a
+menu. This way the tool will access directly the data of the current
+program.</li>
+</ul>
+
+<p>Let's try it. Open your program with the moving "A" (from the
+"Getting Started" chapter) and select "Gfx Designer" from the Tools
+menu.</p>
+
+<div class="info-mobile">
+Open your program, tap the Tools button and select the tool.
+</div>
+
+<div class="info-desktop">
+Run your program and press the Escape key to enter the development
+menu. Then press the Edit (ED) button and select the tool.
+By default the tools menu is empty, so drag and drop the programs
+"Gfx Designer" and "Sound Designer" into the window.
+</div>
+
+<p>Draw something as character #1 (keep #0 empty), then tap on "File"
+and save as file 2 ("Main Characters"). Now return to the source code editor and you will see some hexadecimal data below your program.
+This is your image! To see it, change the line</p>
+<pre class="example">
+SPRITE 0,X,Y,225
+</pre>
+
+<p>to</p>
+
+<pre class="example">
+SPRITE 0,X,Y,1
+</pre>
+
+<p>and run your program. There it is!</p>
+
+<div class="info-desktop">
+Press Ctrl+R in the LowRes NX application to reload and run your
+current program. The Run button in the developer menu does the same.
+</div>
+
+<p>Keep in mind that tools don't save automatically, so never forget
+to save before you exit them.</p>
+
+
+<h2 id="Standard-ROM-Entries">Standard ROM Entries</h2>
+
+<p>For an easy start you should use the ROM entry numbers of the
+following table. Their data is made ready for use automatically.
+</p>
+<table>
+<tr><td>#0</td><td>Keep empty for default font</td></tr>
+<tr><td>#1</td><td>Color palettes</td></tr>
+<tr><td>#2</td><td>Characters (sprites, tiles)</td></tr>
+<tr><td>#3</td><td>Background (tile map)</td></tr>
+<tr><td>#15</td><td>Sounds and music</td></tr>
+</table>
+
+<p>If cartridge ROM entry 0 is not used by a program, the compiler adds
+character data for the default font. It occupies the characters
+192-255 and is automatically copied to video RAM on program start.
+If you want to use the default font, make sure to keep ROM entry 0
+unused.</p>
+
+
+<h1 id="Gfx-Designer">Gfx Designer</h1>
+
+<img class="illustration" src="изображения-инструкции/иллюстрация_рисование.png"  srcset="изображения-инструкции/иллюстрация_рисование.png 1x, изображения-инструкции/иллюстрация_рисование@2x.png 2x"/>
+
+<p>Use the Gfx Designer to draw characters (sprites, tiles, fonts),
+design backgrounds (tile maps, screen layouts) and edit color palettes.</p>
+
+<p>On the bottom right there are three tabs for the different
+sections of the program: The character editor, the palette editor and
+the background editor. You can use the keys 1, 2 and 3 to switch
+between them when running LowRes NX on a computer.</p>
+
+<p>The Gfx Designer loads the main palettes (file 1), characters (file 2),
+and background (file 3) on startup, but keep in mind that it doesn't
+save automatically.</p>
+
+
+<h2 id="GD-Character-Editor">Character Editor</h2>
+
+<p>At the bottom part you see the 256 characters split into four pages.
+There you can select the current one for editing. Keep the last page
+empty, if you want to use the default font. Also character #0 should
+be empty for a clean background.</p>
+<p>The top left square is for drawing the current character using the
+selected color.</p>
+
+<table>
+<tr><td>FILE</td><td>Go to the characters file menu.</td></tr>
+<tr><td>MOV</td><td>Move the pixels of the current character.</td></tr>
+<tr><td>16*16</td><td>Go to the 16x16-pixel edit screen.</td></tr>
+<tr><td>FLIP</td><td>Flip the current character horizontally or vertically.</td></tr>
+<tr><td>SPIN</td><td>Rotate the current character.</td></tr>
+<tr><td>CLR</td><td>Clear the current character with the selected
+color.</td></tr>
+<tr><td>CUT</td><td>Copy and clear the current character.</td></tr>
+<tr><td>COP</td><td>Copy the current character.</td></tr>
+<tr><td>PAS</td><td>Paste the copied character.</td></tr>
+<tr><td>SEL</td><td>Change the size of the selection.</td></tr>
+</table>
+
+<p>The size of the selection affects all edit tools on this screen, as
+well as drawing in the background editor.</p>
+
+
+<h2 id="GD-Palette-Editor">Palette Editor</h2>
+
+<p>The bottom part is identical to the character editor.</p>
+<p>In the box at the left you select the current color palette.</p>
+<p>On the right you can edit each color of the current
+palette using the RGB sliders. The first color is usually transparent
+and unused, except the first color of palette 0, which is used as the
+screen backdrop color.</p>
+
+<table>
+<tr><td>FILE</td><td>Go to the palettes file menu.</td></tr>
+</table>
+
+
+<h2 id="GD-Background-Editor">Background Editor</h2>
+
+<img class="illustration" src="изображения-инструкции/иллюстрация_строительство.png" srcset="изображения-инструкции/иллюстрация_строительство.png 1x, изображения-инструкции/иллюстрация_строительство@2x.png 2x"/>
+
+<p>Here you draw your background using the character and color palette
+currently selected on the other screens.</p>
+
+<table>
+<tr><td>FILE</td><td>Go to the background file menu.</td></tr>
+<tr><td>Pan</td><td>Drag the visible map area.</td></tr>
+<tr><td>Draw</td><td>Draw with the current mode.</td></tr>
+<tr><td>Erase</td><td>Erase cells including their attributes.</td></tr>
+<tr><td>FLIP</td><td>Toggles the X/Y flip attributes.</td></tr>
+<tr><td>PRI</td><td>Toggles the priority attribute.</td></tr>
+</table>
+
+<p>You can use the arrow or WASD keys to scroll the map when running LowRes
+NX on a computer. The keys Z, X, C, V and B select the tool.</p>
+
+<p>The draw tool has different modes. By tapping the button again,
+when it's already selected, you can change the mode:</p>
+
+<table>
+<tr><td>Draw</td><td>Edit single cells.</td></tr>
+<tr><td>Fill</td><td>Edit areas by dragging.</td></tr>
+<tr><td>Character</td><td>Draw with the selected character and color
+palette, using the selected flip and priority attributes.</td></tr>
+<tr><td>Palette</td><td>Change the color palette only.</td></tr>
+<tr><td>Priority</td><td>Change the priority only. Cells with priority
+1 are shown in green, all others in red.</td></tr>
+<tr><td>Stamp</td><td>Select an area by dragging and then draw with it
+(copy and paste).</td></tr>
+</table>
+
+
+<h2 id="GD-File-Menu">File Menu</h2>
+
+<p>From here you load and save characters, color palettes and the
+background separately. There is no option to save everything at once.</p>
+
+<p>The list shows all 16 files of the current virtual disk, or in
+other words the ROM entries of the program you are editing. Select one
+and tap on Load or Save.</p>
+
+<h3 id="GD-File-Characters">Characters</h3>
+<table>
+<tr><td>NEW</td><td>Clear all characters.
+</td></tr>
+<tr><td>FON</td><td>Copy a standard font to the current page.</td></tr>
+<tr><td>PAG</td><td>Load only one page from the selected file to the
+current page. Useful to include fonts from another file, for example.</td></tr>
+</table>
+
+<h3 id="GD-File-Palettes">Palettes</h3>
+<table>
+<tr><td>NEW</td><td>Reset to the default colors.
+</td></tr>
+</table>
+
+<h3 id="GD-File-Backgrounds">Backgrounds</h3>
+<table>
+<tr><td>NEW</td><td>Clear the complete background (keeping its size).
+</td></tr>
+<tr><td>SIZE</td><td>Go to the size menu, where you can choose
+the width and height of the background (in cells), as well as the cell
+size (8x8 or 16x16 pixels).</td></tr>
+</table>
+
+
+<h1 id="Sound-Composer">Sound Composer</h1>
+
+<img class="illustration" src="изображения-инструкции/иллюстрация_музыка.png" srcset="изображения-инструкции/иллюстрация_музыка.png 1x, изображения-инструкции/иллюстрация_музыка@2x.png 2x"/>
+
+<p>The Sound Composer serves to create sound presets, sequences
+("tracks") and complete songs.</p>
+<p>It loads the main sound data (file 15) on startup, but keep in mind
+that it doesn't save automatically. A sound file includes all sound
+and music data.</p>
+
+
+<h2 id="SC-Structure">Structure</h2>
+
+<h3 id="SC-Sounds">16 Sounds</h3>
+
+<p>A sound is a preset with all available sound parameters (waveform,
+envelope, LFO, etc.). It can be used directly with the PLAY command in
+your program or as an instrument in a track/song.</p>
+
+<h3 id="SC-Tracks">64 Tracks</h3>
+
+<p>A track is a sequence of 32 steps for a single voice, where each
+step can play a note or modify the sound. It can be used in your
+program for complex sound effects and short melodies (e.g. "level up")
+with the TRACK command. Tracks are also used to create songs.</p>
+
+<h3 id="SC-Patterns">64 Patterns</h3>
+
+<p>A pattern is a block of music, which defines which track should be
+played on each of the four voices. Patterns will be played one after
+another, except for the following cases: If the next pattern is empty,
+the song is stopped. When the current pattern finishes and has a "loop
+end" flag, the player jumps back to the previous pattern with a "loop
+start" flag. When a pattern finishes and has a "stop" flag, the player
+stops.<br/>
+If you want to create music for a game and you plan to use
+additional sound effects, you should leave at least one voice empty.</p>
+
+<h3 id="SC-Songs">Songs</h3>
+
+<p>The 64 patterns can be used for one long song or several shorter
+ones. By using the "loop" and "stop" flags songs can be separated. To
+play one specific song, just start at its first pattern. To play a
+song in your program use the MUSIC command.</p>
+
+
+<h2 id="SC-Editors">Editors</h2>
+
+<p>The Sound Composer has three tabs in the top right corner for the
+different sections: The pattern editor, the track editor and the sound
+editor. This is a "Tracker"-style program, which means the timeline
+goes from top to bottom, not from left to right. So the steps in a
+track are also called rows. Most values in the range from 0 to 15 are
+shown in hexadecimal format (0-F).</p>
+<p>There is some keyboard support when running LowRes NX on a
+computer: The arrow keys move the cursor and the key rows simulate a
+musical keyboard with two octaves to enter notes. The return key
+enters a note stop, backspace deletes the current note and space
+toggles between play (pattern/track) and stop.
+</p>
+
+<h3 id="SC-The-Pattern-Editor">The Pattern Editor</h3>
+
+<p>Here you can select a pattern, choose its tracks for all voices and
+edit directly the notes of each selected track. There is also a toggle
+button for the "loop" and "stop" flags for the current pattern. If you
+set notes in a voice without track, it selects automatically a free
+track. Use the star symbol from the musical keyboard, if you want to
+stop/release a note in a track.</p>
+
+<h3 id="SC-The-Track-Editor">The Track Editor</h3>
+
+<p>Here you can select and edit a single track with additional
+parameters:</p>
+<table>
+<tr><td>S</td><td>Sound</td></tr>
+<tr><td>V</td><td>Volume</td></tr>
+<tr><td>C</td><td>Sound command</td></tr>
+<tr><td>P</td><td>Parameter</td></tr>
+</table>
+
+
+<h3 id="SC-The-Sound-Editor">The Sound Editor</h3>
+
+<p>Define and test your sounds here. The currently selected sound will
+be used in the other editors for new notes.</p>
+
+
+<h2 id="SC-Sound-Commands">Sound Commands</h2>
+
+<p>These commands allow you to change parameters dynamically while
+playback. Use them in the track editor.</p>
+
+<table>
+<tr><th>C</th><th>P</th><th>Purpose</th></tr>
+<tr><td>0</td><td>0</td><td>No command</td></tr>
+<tr><td>0</td><td>x</td><td>Mix (1=left, 2=right, 3=center/both)</td></tr>
+<tr><td>1</td><td>x</td><td>Attack Time</td></tr>
+<tr><td>2</td><td>x</td><td>Decay Time</td></tr>
+<tr><td>3</td><td>x</td><td>Sustain Level</td></tr>
+<tr><td>4</td><td>x</td><td>Release Time</td></tr>
+<tr><td>5</td><td>x</td><td>LFO Rate</td></tr>
+<tr><td>6</td><td>x</td><td>LFO Frequency Amount</td></tr>
+<tr><td>7</td><td>x</td><td>LFO Volume Amount</td></tr>
+<tr><td>8</td><td>x</td><td>LFO Pulse Width Amount</td></tr>
+<tr><td>9</td><td>x</td><td>Pulse Width</td></tr>
+<tr><td>D</td><td>x</td><td>Slow Speed (like E, but +16)</td></tr>
+<tr><td>E</td><td>x</td><td>Speed (ticks per row, 8 by default)</td></tr>
+<tr><td>F</td><td>0</td><td>Break Track/Pattern</td></tr>
+<tr><td>F</td><td>1</td><td>Cut Note / Volume 0</td></tr>
+</table>
+
+
+<h1 id="Language-Basics">Основы языка</h1>
+
+<p>Язык программирования LowRes NX основан на втором,
+структурном поколении Бейсика (образца 1985 года).</p>
+
+<p>Эта инструкция предназначена как справочник для
+людей, имеющих опыт программирования. Если вы пока
+начинающий программист, вам стоит поискать туториалы
+на <a href="https://lowresnx.inutilis.com/help.php" target="_blank">сайте LowRes NX</a>,
+а потом обращаться к инструкции за более подробной
+информацией.</p>
+
+<h2 id="Types-and-Variables">Типы и переменные</h2>
+
+<p>Из типов данных существуют строки и числа (с плавающей точкой).</p>
+
+<p>Имена переменных могут содержать латинские буквы (A-Z), цифры (0-9) и
+нижние подчеркивания (_), но не могут начинаться с цифры.
+Зарезервированные ключевые слова (команды, функции) не могут
+использоваться в качестве имен переменных, но могут в них входить. Их
+список есть в главе <a href="#Reserved-Keywords">"Зарезервированные ключевые слова"</a>.</p>
+
+<p>Примеры допустимых имен переменных:</p>
+
+<pre class="example">
+X
+A1
+LONG_VARIABLE_NAME
+PRINTER
+</pre>
+
+<p>Примеры недопустимых имен переменных:</p>
+
+<pre class="example">
+2B
+PRINT
+ИМЯ
+</pre>
+
+<p>После имен строковых переменных ставится символ $, например:</p>
+
+<pre class="example">
+A$
+NAME$
+</pre>
+
+<p>Переменные не нужно объявлять, но прежде чем обратиться к
+переменной у нее должно быть задано начальное значение. Значения
+присваиваются переменным с помощью знака равно:</p>
+
+<pre class="example">
+NAME$="LOWRES NX"
+LIVES=3
+</pre>
+
+<p>Обратите внимание, что строковые значения не могут включать
+буквы кириллицы.</p>
+
+<p>Для числовых значений можно использовать шестнадцатеричную и
+двоичную записи:</p>
+
+<pre class="example">
+$FF02
+%11001011
+</pre>
+
+<h2 id="Arrays">Массивы</h2>
+
+<h3 id="_DIM" name="DIM">DIM</h3>
+
+<pre>DIM [GLOBAL] список-массивов</pre>
+
+<p>Определяет массивы по максимальным индексам каждого из измерений:</p>
+
+<pre class="example">
+DIM A(100)
+DIM MAP(31,23,1),NAMES$(9),SCORES(9)
+</pre>
+
+<p>При обращении к элементам массивов, индексы начинаются с нуля:</p>
+
+<pre class="example">
+DIM SCORES(9)
+SCORES(0)=100
+SCORES(9)=5
+PRINT SCORES(0),SCORES(9)
+</pre>
+
+<p>Все элементы массивов автоматически получают в качестве начальных
+значений нули (0) или пустые строки ("").</p>
+
+<p>Дополнительное ключевое слово GLOBAL делает массивы доступными во
+всех подпрограммах.</p>
+
+
+<h3 id="_UBOUND" name="UBOUND">=UBOUND</h3>
+<pre>
+UBOUND(массив[,измерение])
+</pre>
+
+<p>Возвращает верхний предел (максимальный индекс) одного из
+измерений массива <em>массив</em>.</p>
+
+<p>Параметр <em>измерение</em> это дополнительное значение,
+используемое, если массив многомерный, чтобы указать номер нужного
+измерения. По умолчанию равно 1.</p>
+
+<pre class="example">
+DIM SCORES(9)
+FOR I=0 TO UBOUND(SCORES)
+  PRINT SCORES(I)
+NEXT I
+</pre>
+
+
+<h2 id="Labels">Метки</h2>
+
+<p>Метка указывает на позицию в программе и используется для таких
+команд, как GOTO. Состоит из имени, следующего тем же правилам, что
+имена переменных, и двоеточия.</p>
+
+<pre class="example">
+TESTLABEL:
+</pre>
+
+<h2 id="Operators">Операторы</h2>
+
+<h3 id="Operators-Ari">Арифметические</h3>
+
+<table>
+<tr><th>Запись</th> <th>Пример</th> <th>Назначение</th></tr>
+<tr><td>-</td> <td><code>-B</code></td> <td>Отрицание</td></tr>
+<tr><td>^</td> <td><code>X^3</code></td> <td>Возведение в степень</td></tr>
+<tr><td>*</td> <td><code>2*Y</code></td> <td>Умножение</td></tr>
+<tr><td>/</td> <td><code>X/2</code></td> <td>Деление</td></tr>
+<tr><td>\</td> <td><code>X\2</code></td> <td>Целочисленное деление</td></tr>
+<tr><td>+</td> <td><code>C+2</code></td> <td>Сложение</td></tr>
+<tr><td>-</td> <td><code>100-D</code></td> <td>Вычитание</td></tr>
+<tr><td>MOD</td> <td><code>X&#160;MOD&#160;2</code></td> <td>Остаток от деления</td></tr>
+</table>
+
+<p>Действия выполняются в математическом порядке, например
+умножения и деления выполняются до сложений и вычитаний.</p>
+
+<pre class="example">
+PRINT 10+2*5-8/4+5^2
+</pre>
+
+<p>Порядок можно указать явно с помощью скобок, например:</p>
+
+<pre class="example">
+PRINT (3+4)*5
+</pre>
+
+<h3 id="Operators-Rel">Сравнительные</h3>
+
+<table>
+<tr><th>Запись</th> <th>Пример</th> <th>Назначение</th></tr>
+<tr><td>=</td> <td><code>A=10</code></td> <td>Равно</td></tr>
+<tr><td>&lt;&gt;</td> <td><code>A&lt;&gt;100</code></td> <td>Не равно</td></tr>
+<tr><td>&gt;</td> <td><code>B&gt;C</code></td> <td>Больше</td></tr>
+<tr><td>&lt;</td> <td><code>5&lt;X</code></td> <td>Меньше</td></tr>
+<tr><td>&gt;=</td> <td><code>X&gt;=20</code></td> <td>Больше или равно</td></tr>
+<tr><td>&lt;=</td> <td><code>X&lt;=30</code></td> <td>Меньше или равно</td></tr>
+</table>
+
+<p>Выражение со сравнительным оператором возвращает истину (-1) или
+ложь (0).</p>
+
+<h3 id="Operators-Log">Логические или побитовые</h3>
+
+<table>
+<tr><th>Запись</th> <th>Пример</th> <th>Назначение</th></tr>
+<tr><td>NOT</td> <td><code>NOT&#160;(X=15)<br/>NOT&#160;0</code></td> <td>«Не»</td></tr>
+<tr><td>AND</td> <td><code>A=1&#160;AND&#160;B=12<br/>170&#160;AND&#160;15</code></td> <td>«И»</td></tr>
+<tr><td>OR</td> <td><code>X=10&#160;OR&#160;Y=0<br/>128&#160;OR&#160;2</code></td> <td>«Или»</td></tr>
+<tr><td>XOR</td> <td><code>A&#160;XOR&#160;B</code></td> <td>«Исключающее или»</td></tr>
+</table>
+
+<h3 id="Operators-How">Как использовать операторы</h3>
+
+<p>Все операторы применимы к числам. Сравнительные операторы и
+сложение работают и на строках тоже:</p>
+
+<pre class="example">
+SUM=1+3
+IF SUM&lt;5 THEN PRINT "LESS THAN 5"
+NAME$="LOWRES NX"
+GREET$="HELLO "+NAME$+"!"
+IF NAME$&gt;"LOWRES" THEN PRINT GREET$
+IF SUM=4 AND NAME$&lt;&gt;"" THEN PRINT "OK"
+</pre>
+
+
+<h1 id="Program-Flow-Control">Управление ходом программы</h1>
+
+<h2 id="Basics">Basics</h2>
+
+<h3 id="_REM" name="REM">REM</h3>
+<pre>
+REM remark
+' remark
+</pre>
+
+<p>Allows you to put comments into your program. REM lines are not
+executed. You can use an apostrophe (') in place of the word REM.</p>
+
+<pre class="example">
+REM THIS IS A TEST PROGRAM
+REM WRITTEN BY TIMO KLOSS
+PRINT "HELLO"
+'SHOW MORE TEXT...
+PRINT "BYE"
+</pre>
+
+
+<h3 id="_IF-THEN-ELSE" name="IF,THEN,ELSE">IF...THEN...ELSE</h3>
+<pre>
+IF expr THEN command [ELSE command]
+</pre>
+
+<p>Checks if the given expression is true or false. If it's true, the
+command after THEN is executed, otherwise the one after ELSE. The ELSE
+part is optional.</p>
+
+<pre class="example">
+INPUT "NUMBER A:";A
+INPUT "NUMBER B:";B
+PRINT "SAME? ";
+IF A=B THEN PRINT "YES" ELSE PRINT "NO"
+IF A&lt;B THEN PRINT "A LESS THAN B"
+IF A&gt;B THEN PRINT "A GREATER THAN B"
+</pre>
+
+<p>If you want to execute more than one command (or avoid long lines),
+you can use the block version of the IF command. It must be closed
+with the line END IF.</p>
+
+<pre>
+IF expression THEN
+  commands
+[ELSE IF expression THEN]
+  commands
+[ELSE]
+  commands
+END IF
+</pre>
+
+<p>Blocks can be nested like in this example:</p>
+
+<pre class="example">
+PRINT "NUMBER OF PLAYERS"
+INPUT "1-4: ";N
+
+IF N&lt;1 OR N&gt;4 THEN
+  PRINT "WRONG INPUT"
+  PRINT "RESTART!"
+ELSE IF N=1 THEN
+  PRINT "SINGLE-PLAYER"
+ELSE
+  PRINT "MULTI-PLAYER"
+  IF N=4 THEN
+    PRINT "MAXIMUM"
+  END IF
+END IF
+</pre>
+
+
+<h3 id="_GOTO" name="GOTO">GOTO</h3>
+
+<pre>GOTO label</pre>
+
+<p>Jumps to the given label and continues the program execution there.
+</p>
+
+<pre class="example">
+PRINT "START"
+GOTO GAMELEVEL
+
+GAMEOVER:
+PRINT "GAME OVER"
+END
+
+GAMELEVEL:
+PRINT "PLAYING"
+GOTO GAMEOVER
+</pre>
+
+
+<h3 id="_GOSUB" name="GOSUB">GOSUB</h3>
+
+<pre>GOSUB label</pre>
+
+<p>Adds the current program position to a stack and jumps to the
+given label. The program after the label is called a subroutine and
+must be finished using RETURN.</p>
+
+<pre class="example">
+FOR I=1 TO 5
+  GOSUB SHOWNUMBER
+NEXT I
+END
+
+SHOWNUMBER:
+PRINT "NUMBER",I
+RETURN
+</pre>
+
+<p>NOTE: Subroutines exist mostly for historical reasons. You should
+prefer the more powerful and safer subprograms.</p>
+
+
+<h3 id="_RETURN" name="RETURN">RETURN</h3>
+
+<pre>RETURN</pre>
+
+<p>Jumps back to the position of the last call of GOSUB and removes
+it from the stack.</p>
+
+<pre>RETURN label</pre>
+
+<p>Works like GOTO, but clears the whole stack. Use this to exit from
+a subroutine, if you want to continue your program somewhere else.</p>
+
+<pre class="example">
+FOR I=1 TO 5
+  GOSUB SHOWNUMBER
+NEXT I
+END
+
+SHOWNUMBER:
+IF I=4 THEN RETURN GAMEOVER
+PRINT "NUMBER",I
+RETURN
+
+GAMEOVER:
+PRINT "GAME OVER"
+</pre>
+
+
+<h3 id="_END" name="END">END</h3>
+
+<pre>END</pre>
+
+<p>Stops the program from any position. The program is also stopped
+automatically after the last line of code.</p>
+
+<pre class="example">
+PRINT "THIS HAPPENS"
+END
+PRINT "THIS DOESN'T"
+</pre>
+
+
+<h3 id="_WAIT-VBL" name="WAIT VBL,WAIT,VBL">WAIT VBL</h3>
+
+<pre>WAIT VBL</pre>
+
+<p>Waits for the next frame. This (or WAIT n) should be the last
+command in all loops which do animations and/or handle input,
+like the main game loop.</p>
+
+<pre class="example">
+DO
+  PAL RND(3)
+  TEXT RND(19),RND(15),"*"
+  WAIT VBL
+LOOP
+</pre>
+
+
+<h3 id="_WAIT" name="WAIT">WAIT</h3>
+
+<pre>WAIT n</pre>
+
+<p>Waits <em>n</em> frames (n/60 seconds), where the minimum for
+<em>n</em> is 1.
+Subprograms running from interrupts (ON VBL/RASTER, MUSIC) will
+continue to work as normal during this period.</p>
+<p>WAIT 1 is the same as WAIT VBL, so why is there WAIT VBL? Because
+it looks cooler and nerdier! A little guideline: Use WAIT VBL in loops
+for smooth animations and input handling, and WAIT n if you actually
+want to wait some time.</p>
+
+<pre class="example">
+PRINT "INUTILIS"
+PRINT "PRESENTS..."
+WAIT 60
+PRINT "THE WAIT PROGRAM!"
+</pre>
+
+
+<h2 id="Loops">Loops</h2>
+
+<h3 id="_FOR-NEXT" name="FOR,TO,STEP,NEXT">FOR...NEXT</h3>
+<pre>
+FOR var=a TO b [STEP s]
+  commands
+NEXT var
+</pre>
+
+<p>Performs a series of commands in a loop a given number of times.
+The FOR command uses the variable <em>var</em> as a counter, starting with the
+value <em>a</em>. All commands until NEXT are executed, then the counter is
+increased by <em>s</em> (or 1 if STEP is omitted). A check is performed to see
+if the counter is now greater than <em>b</em>. If not, the process is repeated.
+If it is greater, the program continues with the lines after NEXT.</p>
+
+<pre class="example">
+FOR I=1 TO 8
+  PRINT I
+NEXT I
+</pre>
+
+<pre class="example">
+FOR I=2 TO 16 STEP 2
+  PRINT I
+NEXT I
+</pre>
+
+<p>If STEP <em>s</em> is negative, the loop is executed until the
+counter is less than value <em>b</em>.</p>
+
+<pre class="example">
+FOR I=8 TO 1 STEP -1
+  PRINT I
+NEXT I
+</pre>
+
+<p>Loops can be placed inside of others:</p>
+
+<pre class="example">
+FOR P=0 TO 3
+  PAL P
+  FOR N=1 TO 4
+    PRINT N
+  NEXT N
+NEXT P
+</pre>
+
+
+<h3 id="_DO-LOOP" name="DO,LOOP">DO...LOOP</h3>
+<pre>
+DO
+  commands
+LOOP
+</pre>
+
+<p>Performs commands in an endless loop. You can use GOTO or EXIT to leave it.
+</p>
+
+<pre class="example">
+DO
+  PAL RND(3)
+  PRINT "FOREVER"
+LOOP
+</pre>
+
+
+<h3 id="_REPEAT-UNTIL" name="REPEAT,UNTIL">REPEAT...UNTIL</h3>
+<pre>
+REPEAT
+  commands
+UNTIL expression
+</pre>
+
+<p>Executes the commands in a loop until the given expression is true.
+The loop is executed at least once.</p>
+
+<pre class="example">
+REPEAT
+  A=RND(9)
+  PRINT A
+UNTIL A=0
+</pre>
+
+
+<h3 id="_WHILE-WEND" name="WHILE,WEND">WHILE...WEND</h3>
+<pre>
+WHILE expression
+  commands
+WEND
+</pre>
+
+<p>Executes the commands in a loop as long as the given expression is
+true.</p>
+
+<pre class="example">
+A=4
+WHILE A&lt;10
+  PRINT A
+  A=A+1
+WEND
+</pre>
+
+
+<h3 id="_EXIT" name="EXIT">EXIT</h3>
+<pre>
+EXIT
+</pre>
+
+<p>Exits immediately from a loop created with the FOR...NEXT, REPEAT...UNTIL, WHILE...WEND, or DO...LOOP commands.</p>
+
+<pre class="example">
+DO
+  INPUT "ENTER E TO EXIT:";A$
+  IF A$="E" THEN EXIT
+  PRINT "GOING ON..."
+LOOP
+PRINT "END"
+</pre>
+
+
+<h2 id="Subprograms">Subprograms</h2>
+
+<h3 id="_SUB" name="SUB,END SUB,END">SUB...END SUB</h3>
+<pre>
+SUB name [(parameter-list)]
+  commands
+END SUB
+</pre>
+
+<p>Defines a subprogram with the given name. The optional parameter
+list can contain two types of entries: simple variables and array
+variables (followed by an empty parentheses pair). Entries are
+separated by commas. By default all variables inside the subprogram
+are local.</p>
+
+<p>NOTE: Don't use GOTO or GOSUB to jump out of a subprogram!</p>
+
+
+<h3 id="_CALL" name="CALL">CALL</h3>
+<pre>
+CALL name [(argument-list)]
+</pre>
+
+<p>Executes the subprogram with the given name and returns to the
+current position after finishing it. The argument list
+must match the parameters of the SUB definition. Simple variables,
+single array elements and entire arrays (followed by an empty parentheses pair) are passed by reference to the subprogram. Other
+expressions are passed by value.</p>
+
+<pre class="example">
+CALL GREET("LOWRES NX",3)
+CALL GREET("YOU",1)
+CALL BYE
+
+SUB BYE
+  PAL 1
+  PRINT "BYE"
+END SUB
+
+SUB GREET(N$,A)
+  FOR I=1 TO A
+    PAL RND(3)
+    PRINT "HELLO",N$
+  NEXT I
+END SUB
+</pre>
+
+
+<h3 id="_EXIT-SUB" name="EXIT SUB,EXIT,SUB">EXIT SUB</h3>
+<pre>
+EXIT SUB
+</pre>
+
+<p>Exits a subprogram before END SUB is reached.</p>
+
+
+<h3 id="_GLOBAL" name="GLOBAL">GLOBAL</h3>
+<pre>
+GLOBAL variable-list
+</pre>
+
+<p>Makes variables from the main program available to all subprograms.
+The list can contain simple variables only. For arrays you should use
+DIM GLOBAL. This command cannot be used within a subprogram.</p>
+
+<pre class="example">
+GLOBAL SCORE,TRIES
+
+TRIES=3
+
+CALL WIN(10)
+CALL WIN(20)
+
+SUB WIN(N)
+  SCORE=SCORE+N
+  PRINT "SCORE:",SCORE,"TRIES:",TRIES
+END SUB
+</pre>
+
+
+<h1 id="Text">Text</h1>
+
+<h3 id="_PRINT" name="PRINT">PRINT</h3>
+
+<pre>PRINT список-выражений</pre>
+
+<p>Выводит текст в текущем окне. Выражения могут быть строками или
+числами, разделенными запятыми или точками с запятыми. Запятая
+разделяет вывод пробелом, точка с запятой же выводит без пробела.
+Добавьте запятую или точку с запятой на конец списка, чтобы оставить
+курсор на конце вывода, иначе будет начата новая строка.</p>
+
+<pre class="example">
+PRINT "HELLO WORLD"
+PRINT 42
+PRINT 1+3
+PRINT "SCORE:",100
+PRINT "ONE ";
+PRINT "LINE"
+</pre>
+
+
+<h3 id="_INPUT" name="INPUT">INPUT</h3>
+
+<pre>INPUT ["запрос";]переменная</pre>
+
+<p>Позволяет пользователю ввести текст или число на клавиатуре и сохраняет
+его в переменную <em>переменная</em>. Дополнительно может вывести текст
+запроса перед вводом (не может быть переменной).</p>
+<p>INPUT автоматически подключает клавиатуру.</p>
+
+<pre class="example">
+INPUT "NAME:";N$
+INPUT "AGE:";AGE
+PRINT "HELLO ";N$;"!"
+PRINT "SOON YOU ARE ";AGE+1
+</pre>
+
+
+<h3 id="_LOCATE" name="LOCATE">LOCATE</h3>
+
+<pre>LOCATE курс-x,курс-y</pre>
+
+<p>Перемещает текстовый курсор в столбец <em>курс-x</em> и строку <em>курс-y</em>
+относительно текущего окна.</p>
+
+<pre class="example">
+LOCATE 2,4
+PRINT "HELLO"
+</pre>
+
+
+<h3 id="_CURSOR.X-CURSOR.Y" name="CURSOR.X,CURSOR.Y">=CURSOR.X/Y</h3>
+<pre>
+CURSOR.X
+CURSOR.Y
+</pre>
+
+<p>Возвращает текущий столбец (X) или строку (Y) текстового курсора
+относительно текущего окна.</p>
+
+
+<h3 id="_WINDOW" name="WINDOW">WINDOW</h3>
+
+<pre>WINDOW курс-x,курс-y,ш,в,ф</pre>
+
+<p>Указывает позицию ячейки окна вывода текста как <em>курс-x,курс-y</em> и указывает
+размер как <em>ш</em> столбцов и <em>в</em> строк. Текст будет написан на фон
+<em>ф</em> (0 или 1).</p>
+
+<pre class="example">
+WINDOW 6,4,8,4,0
+PRINT "LONG TEXT IN A SMALL WINDOW"
+</pre>
+
+
+<h3 id="_CLW" name="CLW">CLW</h3>
+
+<pre>CLW</pre>
+
+<p>Очищает окно пробелами и обнуляет позицию текстового курсора.</p>
+
+<pre class="example">
+PRINT "HELLO"
+CLW
+PRINT "BYE"
+</pre>
+
+
+<h1 id="User-Input">User Input</h1>
+
+<h2 id="Gamepads">Gamepads</h2>
+
+<h3 id="_GAMEPAD" name="GAMEPAD">GAMEPAD</h3>
+    
+<pre>GAMEPAD n</pre>
+
+<p>Enables gamepads for <em>n</em> (1 or 2) players. Once the gamepad is
+enabled, the program cannot change to touchscreen/mouse input anymore.
+</p>
+
+
+<h3 id="_UP-DOWN-LEFT-RIGHT" name="=UP,DOWN,LEFT,RIGHT">=UP/DOWN/LEFT/RIGHT</h3>
+
+<pre>
+UP(p)
+DOWN(p)
+LEFT(p)
+RIGHT(p)
+</pre>
+
+<p>Returns true if the given direction is currently pressed on the
+direction pad of player <em>p</em> (0/1).</p>
+
+<pre>
+UP TAP(p)
+DOWN TAP(p)
+LEFT TAP(p)
+RIGHT TAP(p)
+</pre>
+
+<p>With the optional TAP keyword, this function returns true only for
+the first frame the button is pressed.</p>
+
+<pre class="example">
+GAMEPAD 1
+DO
+  IF UP(0) THEN PRINT "UP"
+  IF DOWN(0) THEN PRINT "DOWN"
+  IF LEFT TAP(0) THEN PRINT "TAP &lt;"
+  IF RIGHT TAP(0) THEN PRINT "TAP &gt;"
+  WAIT VBL
+LOOP
+</pre>
+
+
+<h3 id="_BUTTON" name="BUTTON,TAP">=BUTTON</h3>
+
+<pre>BUTTON(p[,n])</pre>
+
+<p>Returns true if button A (<em>n</em>=0) or B (<em>n</em>=1) is currently pressed by
+player <em>p</em> (0/1). If the parameter <em>n</em> is omitted, both buttons
+(A and B) are checked.</p>
+
+<pre>BUTTON TAP(p[,n])</pre>
+
+<p>With the optional TAP keyword, this function returns true only for
+the first frame the button is pressed.</p>
+
+<pre class="example">
+GAMEPAD 1
+DO
+  IF BUTTON(0,0) THEN PRINT "A"
+  IF BUTTON TAP(0,1) THEN PRINT "TAP B"
+  WAIT VBL
+LOOP
+</pre>
+
+
+<h3 id="_PAUSE-ON-OFF" name="PAUSE ON,PAUSE OFF,PAUSE,ON,OFF">PAUSE ON/OFF</h3>
+
+<pre>
+PAUSE ON
+PAUSE OFF
+</pre>
+
+<p>Enables or disables the automatic pause handling. By default it's
+enabled, so if you press the pause button, the program stops and
+shows "PAUSE" on the screen, until the button is pressed again.</p>
+
+
+<h3 id="_PAUSE" name="PAUSE">PAUSE</h3>
+
+<pre>
+PAUSE
+</pre>
+
+<p>Pauses the program and shows the default "PAUSE" screen, even if
+automatic pause handling is disabled.</p>
+
+
+<h3 id="_=PAUSE" name="PAUSE">=PAUSE</h3>
+
+<pre>
+PAUSE
+</pre>
+
+<p>Returns true if the pause button was pressed, otherwise false.
+After calling this function its value is cleared, so it returns
+each button tap only once. The automatic pause handling needs to
+be disabled for this function.</p>
+
+<pre class="example">
+GAMEPAD 1
+PAUSE OFF
+DO
+  IF PAUSE THEN PRINT "PAUSE PRESSED"
+  WAIT VBL
+LOOP
+</pre>
+
+
+<h2 id="Touchscreen-Mouse">Touchscreen/Mouse</h2>
+
+<p>Use touchscreen support only if you think it will work well with a
+computer mouse, too. If you want to create your own game buttons,
+keep in mind that your game might be unplayable on a computer,
+because it won't support the keyboard or a real gamepad. Always
+consider using the standard gamepad functions.</p>
+
+
+<h3 id="_TOUCHSCREEN" name="TOUCHSCREEN">TOUCHSCREEN</h3>
+
+<pre>
+TOUCHSCREEN
+</pre>
+
+<p>Enables the touchscreen/mouse support. Once it's enabled, the
+program cannot change to gamepad input anymore.</p>
+
+
+<h3 id="_TOUCH.X-TOUCH.Y" name="TOUCH.X,TOUCH.Y">=TOUCH.X/Y</h3>
+<pre>
+TOUCH.X
+TOUCH.Y
+</pre>
+
+<p>Returns the current X or Y pixel position where the user touches
+the screen, or where it was touched the last time.</p>
+
+
+<h3 id="_TOUCH" name="TOUCH">=TOUCH</h3>
+
+<pre>TOUCH</pre>
+
+<p>Returns true if the screen is currently touched.</p>
+
+<pre class="example">
+TOUCHSCREEN
+DO
+  IF TOUCH THEN PRINT TOUCH.X,TOUCH.Y
+  WAIT VBL
+LOOP
+</pre>
+
+
+<h3 id="_TAP" name="TAP">=TAP</h3>
+
+<pre>TAP</pre>
+
+<p>Returns true if the screen is currently touched and was not
+touched the last frame.</p>
+
+<pre class="example">
+TOUCHSCREEN
+DO
+  IF TAP THEN PRINT TOUCH.X,TOUCH.Y
+  WAIT VBL
+LOOP
+</pre>
+
+
+<h2 id="Keyboard">Keyboard</h2>
+
+<h3 id="_KEYBOARD-ON-OFF-OPTIONAL" name="KEYBOARD ON,KEYBOARD OFF,KEYBOARD OPTIONAL,KEYBOARD,ON,OFF,OPTIONAL">KEYBOARD ON/OFF/OPTIONAL</h3>
+
+<pre>
+KEYBOARD ON
+KEYBOARD OFF
+</pre>
+
+<p>Enables or disables the keyboard. While the keyboard is enabled,
+gamepads don't work.</p>
+
+<pre>
+KEYBOARD OPTIONAL
+</pre>
+
+<p>Enables the keyboard, but won't show an on-screen keyboard on
+touchscreen devices. Programs using this mode should be completely
+usable with gamepad or touch control and use the keyboard for
+alternative input only.</p>
+
+
+<h3 id="_INKEY$" name="INKEY$">=INKEY$</h3>
+
+<pre>INKEY$</pre>
+
+<p>Returns the last pressed key as a string. If no key was pressed,
+it returns an empty string (""). After calling this function its
+value is cleared, so it returns each pressed key only once.
+The keyboard needs to be enabled for this function.</p>
+
+<pre class="example">
+KEYBOARD ON
+DO
+  I$=INKEY$
+  IF I$&lt;&gt;"" THEN PRINT I$
+  WAIT VBL
+LOOP
+</pre>
+
+
+<h1 id="Graphics">Graphics</h1>
+
+<p>All graphics in LowRes NX are based on characters. A character is an
+8x8-pixel image with 3 colors plus transparent. It's displayed with
+one of the 8 programmable color palettes.</p>
+
+<p>At program start all characters from ROM entry 2 are copied to
+video RAM to make them immediately usable.</p>
+
+<p>The display is composed of 3 layers, which are from back to front:</p>
+<ul>
+<li>Background 1 (BG 1)</li>
+<li>Background 0 (BG 0)</li>
+<li>Sprites</li>
+</ul>
+
+<p>Each sprite and background cell has an attribute called "priority".
+By setting it, the cell or sprite will appear on a higher display
+layer. Actually there are 6 layers, from back to front:</p>
+<ul>
+<li>Background 1 (BG 1) - prio 0</li>
+<li>Background 0 (BG 0) - prio 0</li>
+<li>Sprites - prio 0</li>
+<li>Background 1 (BG 1) - prio 1</li>
+<li>Background 0 (BG 0) - prio 1</li>
+<li>Sprites - prio 1</li>
+</ul>
+
+
+<h2 id="Sprites">Sprites</h2>
+
+<p>Sprites are independent objects, which can be freely moved on the
+screen. They can have a size of 8x8 pixels (one character) or up to
+32x32 pixels by grouping several characters. Each sprite has the
+standard character attributes (color palette, flip X/Y, priority) and additionally its size.</p>
+
+
+<h3 id="_SPRITE" name="SPRITE,PAL,FLIP,PRIO">SPRITE</h3>
+
+<pre>SPRITE n,[x],[y],[c]</pre>
+
+<p>Sets the position <em>(x,y)</em> and character <em>(c)</em> of sprite <em>n</em> (0-63).
+All parameters can be omitted to keep their current settings.</p>
+
+<pre>
+SPRITE n [PAL pal] [FLIP fx,fy]
+... [PRIO pri] [SIZE s]
+</pre>
+
+<p>Sets one or more attributes of sprite <em>n</em> (0 - 63):</p>
+
+<table>
+<tr><td>pal</td> <td>palette number (0-7)</td></tr>
+<tr><td>fx</td> <td>flip horizontally (0/1)</td></tr>
+<tr><td>fy</td> <td>flip vertically (0/1)</td></tr>
+<tr><td>pri</td> <td>priority (0/1)</td></tr>
+<tr><td>s</td> <td>size (0-3):<br/>
+0: 1 character (8x8 px)<br/>
+1: 2x2 characters (16x16 px)<br/>
+2: 3x3 characters (24x24 px)<br/>
+3: 4x4 characters (32x32 px)</td></tr>
+</table>
+
+<pre class="example">
+SPRITE 0,32,64,193
+SPRITE 1,64,64,193
+SPRITE 1 PAL 1 SIZE 3
+FOR X=64 TO 128
+  SPRITE 1,X,,
+  IF X=96 THEN SPRITE 1 FLIP 1,0
+  WAIT VBL
+NEXT X
+</pre>
+
+
+<h3 id="_SPRITE.A" name="SPRITE.A">SPRITE.A</h3>
+
+<pre>SPRITE.A n,a</pre>
+
+<p>Sets all attributes of sprite <em>n</em> (0-63) as a single 8-bit value.
+See <a href="#Sprite-Registers">"Sprite Registers"</a> for more information.</p>
+
+<p>NOTE: It's easier to set these values with the attributes syntax of the
+<a href="#_SPRITE">SPRITE</a> command.</p>
+
+
+<h3 id="_SPRITE-OFF" name="SPRITE OFF,SPRITE,OFF">SPRITE OFF</h3>
+
+<pre>
+SPRITE OFF [n]
+SPRITE OFF a TO b
+</pre>
+
+<p>Hides one or more sprites. If all parameters are omitted, all sprites (0 - 63) are hidden. With one parameter only the given sprite is hidden. The last option is to hide sprites in the range from <em>a</em> to <em>b</em>.</p>
+
+
+<h3 id="_=SPRITE.X-Y" name="SPRITE.X,SPRITE.Y">=SPRITE.X/Y</h3>
+
+<pre>
+SPRITE.X(n)
+SPRITE.Y(n)
+</pre>
+
+<p>Return the position of sprite <em>n</em>.</p>
+
+
+<h3 id="_=SPRITE.C" name="SPRITE.C">=SPRITE.C</h3>
+
+<pre>SPRITE.C(n)</pre>
+
+<p>Returns the character of sprite <em>n</em>.</p>
+
+
+<h3 id="_=SPRITE.A" name="SPRITE.A">=SPRITE.A</h3>
+
+<pre>SPRITE.A(n)</pre>
+
+<p>Returns the attributes of sprite <em>n</em> as an 8-bit value.
+See <a href="#Sprite-Registers">"Sprite Registers"</a> for more
+information.</p>
+
+
+<h3 id="_=SPRITE-HIT" name="SPRITE HIT,SPRITE,HIT">=SPRITE HIT</h3>
+
+<pre>SPRITE HIT(n[,a [TO b]])</pre>
+
+<p>Returns true if sprite <em>n</em> collides with another sprite (which means
+that pixels overlap). If no more parameters are given, it will
+check with all other visible sprites. If the <em>a</em> parameter is added,
+it will check only with that sprite <em>a</em>. If all parameters are
+given, it will check with all sprites from number <em>a</em> to number <em>b</em>.</p>
+
+<pre class="example">
+SPRITE 0,32,64,225
+SPRITE 1,96,68,226
+FOR X=32 TO 128
+  SPRITE 0,X,,
+  IF SPRITE HIT(0,1) THEN
+    SPRITE 0 PAL 1
+  ELSE
+    SPRITE 0 PAL 0
+  END IF
+  WAIT VBL
+NEXT X
+</pre>
+
+
+<h3 id="_=HIT" name="HIT">=HIT</h3>
+
+<pre>HIT</pre>
+
+<p>Returns the number of the sprite which collided with the sprite of
+the last call of SPRITE HIT.</p>
+
+
+<h2 id="Backgrounds">Backgrounds</h2>
+
+<p>A background is a map of 32x32 character cells, which is used for text
+and tile based maps or images. Each cell has the information of which
+character it contains and additional attributes (color palette, flip
+X/Y, priority).</p>
+
+<p>As a character has the size of 8x8 pixels, the resulting background
+size is 256x256 pixels, which is larger than the actual screen
+(160x128). By modifying the scroll offset of a background, the visible
+area can be moved.</p>
+
+<p>If the visible area moves out of the borders of the background, the
+display wraps around the edges. This can be used to achieve endless
+scrolling.</p>
+
+<p>There is a mode for 16x16-pixel cells. When active, each cell will show
+2x2 characters, similar to big sprites. This mode also increases the
+background size to 512x512 pixels. Use the CELL SIZE command to enable
+it.</p>
+
+<p>For most of the commands and functions that access backgrounds
+their cell co-ordinates can be outside of the background size (32x32).
+They will be wrapped around the edges, so for example a character drawn
+at position 34,-2 will actually appear at position 2,30.</p>
+
+
+<h3 id="_CLS" name="CLS">CLS</h3>
+    
+<pre>CLS</pre>
+
+<p>Clears both backgrounds with character 0 and resets the current
+window to the default one.</p>
+
+<pre>CLS b</pre>
+
+<p>Clears background <em>b</em> with character 0.</p>
+
+
+<h3 id="_PAL" name="PAL">PAL</h3>
+
+<pre>PAL p</pre>
+
+<p>Sets the palette number (0-7) attribute for cell and text commands.</p>
+
+<pre class="example">
+PRINT "HELLO"
+PAL 1
+PRINT "LOWRES NX!"
+</pre>
+
+
+<h3 id="_FLIP" name="FLIP">FLIP</h3>
+
+<pre>FLIP fx,fy</pre>
+
+<p>Sets the values (0 or 1) for horizontal (<em>fx</em>) and vertical (<em>fy</em>)
+flip attributes for cell and text commands.</p>
+
+<pre class="example">
+PRINT "LOWRES NX"
+FLIP 0,1
+PRINT "LOWRES NX"
+FLIP 1,0
+PRINT "XN SERWOL"
+</pre>
+
+
+<h3 id="_PRIO" name="PRIO">PRIO</h3>
+
+<pre>PRIO p</pre>
+
+<p>Sets the priority (0 or 1) attribute for cell and text commands.</p>
+
+
+<h3 id="_ATTR" name="ATTR">ATTR</h3>
+
+<pre>ATTR a</pre>
+
+<p>Sets all attributes for cell and text commands as a single
+8-bit value. See <a href="#BG-Data">"BG Data"</a> for more information.</p>
+
+<p>NOTE: It's easier to use the commands <a href="#_PAL">PAL</a>, <a href="#_FLIP">FLIP</a> and <a href="#_PRIO">PRIO</a>.</p>
+
+
+<h3 id="_BG" name="BG">BG</h3>
+
+<pre>BG n</pre>
+
+<p>Sets the current background (0 or 1) for cell and text commands.</p>
+
+
+<h3 id="_CELL" name="CELL">CELL</h3>
+
+<pre>CELL cx,cy,c</pre>
+
+<p>Sets the cell at position <em>cx,cy</em> of the current background to
+character <em>c</em> using the current attributes.</p>
+
+<pre class="example">
+PAL 2
+CELL 1,1,225
+CELL 2,1,226
+PAL 1
+CELL 3,1,227
+</pre>
+
+
+<h3 id="_CELL.C" name="CELL.C">=CELL.C</h3>
+
+<pre>CELL.C(cx,cy)</pre>
+
+<p>Returns the character of the cell at position <em>cx,cy</em> of the current
+background.</p>
+
+
+<h3 id="_CELL.A" name="CELL.A">=CELL.A</h3>
+
+<pre>CELL.A(cx,cy)</pre>
+
+<p>Returns the attributes of the cell at position <em>cx,cy</em> of the current
+background as an 8-bit value. See <a href="#BG-Data">"BG Data"</a> for
+more information.</p>
+
+
+<h3 id="_BG-FILL" name="BG FILL,BG,FILL,TO,CHAR">BG FILL</h3>
+
+<pre>BG FILL cx1,cy1 TO cx2,cy2 CHAR c</pre>
+
+<p>Sets all cells in the area from <em>cx1,cy1</em> to <em>cx2,cy2</em>
+of the current background to character <em>c</em> using the current attributes.</p>
+
+<pre class="example">
+PAL 2
+BG FILL 2,2 TO 17,13 CHAR 225
+PAL 1
+BG FILL 10,8 TO 17,13 CHAR 226
+</pre>
+
+
+<h3 id="_TINT" name="TINT,PAL,FLIP,PRIO">TINT</h3>
+
+<pre>
+TINT cx,cy [PAL pal]
+... [FLIP fx,fy] [PRIO pri]
+</pre>
+
+<p>Changes the palette and/or other attributes of the cell at position
+<em>cx,cy</em> of the current background. The cell's character and
+omitted attributes stay unchanged.</p>
+
+<pre class="example">
+BG FILL 2,2 TO 17,13 CHAR 225
+TINT 10,8 PAL 1 FLIP 0,1
+</pre>
+
+
+<h3 id="_BG-TINT" name="BG TINT,BG,TINT,TO,PAL,FLIP,PRIO">BG TINT</h3>
+
+<pre>
+BG TINT cx1,cy1 TO cx2,cy2
+... [PAL pal] [FLIP fx,fy] [PRIO pri]
+</pre>
+
+<p>Changes the palette and/or other attributes of all cells in the
+area from <em>cx1,cy1</em> to <em>cx2,cy2</em> of the current
+background. The cells' characters and omitted attributes stay
+unchanged.</p>
+
+<pre class="example">
+BG FILL 2,2 TO 17,13 CHAR 225
+BG TINT 10,8 TO 15,11 PAL 1
+</pre>
+
+
+<h3 id="_BG-SOURCE" name="BG SOURCE,BG,SOURCE">BG SOURCE</h3>
+
+<pre>BG SOURCE a[,w,h]</pre>
+
+<p>Sets the current source for the BG COPY command. The two-dimensional
+map starts at memory address <em>a</em>, has a width of <em>w</em> and
+a height of <em>h</em> cells.</p>
+
+<p>Without the size parameters, Gfx Designer's background data
+format is assumed: The width is read from address <em>a</em>+2, the
+height from <em>a</em>+3 and the actual map data starts at <em>a</em>+4.</p>
+
+<p>By default ROM entry 3 is used as source.</p>
+
+<pre class="example">
+'USE A MAP FROM ROM ENTRY 4
+BG SOURCE ROM(4)
+'USE A MAP FROM WORKING RAM
+BG SOURCE $A000,32,32
+</pre>
+
+
+<h3 id="_BG-COPY" name="BG COPY,BG,COPY">BG COPY</h3>
+
+<pre>BG COPY cx1,cy1,w,h TO cx2,cy2</pre>
+
+<p>Copies a two-dimensional part of the current source to the
+current background.</p>
+
+<pre class="example">
+'SHOW SCREEN FROM GFX DESIGNER
+BG COPY 0,0,20,16 TO 0,0
+</pre>
+
+
+<h3 id="_BG-SCROLL" name="BG SCROLL,BG,SCROLL,STEP">BG SCROLL</h3>
+
+<pre>BG SCROLL cx1,cy1 TO cx2,cy2 STEP dx,dy</pre>
+
+<p>Moves the content of all cells in the area from <em>cx1,cy1</em> to <em>cx2,cy2</em>
+horizontally by <em>dx</em> and vertically by <em>dy</em> cells.</p>
+
+<pre class="example">
+DO
+  BG SCROLL 0,0 TO 19,15 STEP -1,0
+  CELL 18,RND(15),193+RND(62)
+  WAIT 5
+LOOP
+</pre>
+
+
+<h3 id="_MCELL.C-MCELL.A" name="MCELL.C,MCELL.A,MCELL">=MCELL.C/A</h3>
+
+<pre>MCELL.C(cx,cy)</pre>
+<pre>MCELL.A(cx,cy)</pre>
+
+<p>Work like the CELL.C and CELL.A functions, but get a cell from the
+source map (BG SOURCE) instead of the current background. If the
+co-ordinates are outside of the map bounds, the functions return -1.</p>
+
+
+<h3 id="_MCELL" name="MCELL">MCELL</h3>
+
+<pre>MCELL cx,cy,c</pre>
+
+<p>Works like the CELL command, but sets a cell in the source map
+(BG SOURCE) instead of the current background. The source must be in
+working RAM, otherwise you will get an "Illegal Memory Access" error.</p>
+
+
+<h3 id="_TEXT" name="TEXT">TEXT</h3>
+
+<pre>TEXT cx,cy,s$</pre>
+
+<p>Outputs the string <em>s$</em> to the current background at cell position
+<em>cx,cy</em> using the current attributes.</p>
+
+<pre class="example">
+PAL 3
+TEXT 15,15,"HELLO"
+</pre>
+
+
+<h3 id="_NUMBER" name="NUMBER">NUMBER</h3>
+
+<pre>NUMBER cx,cy,n,d</pre>
+
+<p>Outputs the number <em>n</em> to the current background at cell position
+<em>cx,cy</em> using the current attributes. The number is formatted to show
+always <em>d</em> digits.
+This command is preferred over TEXT to show numbers, as it
+doesn't need to convert numbers to strings.</p>
+
+<pre class="example">
+NUMBER 15,0,321,5
+</pre>
+
+
+<h3 id="_FONT" name="FONT">FONT</h3>
+    
+<pre>FONT c</pre>
+
+<p>Sets the current character range used for text output.
+<em>c</em> is the character where the font starts (space).</p>
+
+<p>The default value is 192, which points to the standard font,
+if available.</p>
+
+
+<h3 id="_SCROLL" name="SCROLL">SCROLL</h3>
+
+<pre>SCROLL b,x,y</pre>
+
+<p>Sets the scroll offset of background <em>b</em> (0/1) to pixel
+co-ordinates <em>x,y</em>.</p>
+
+<pre class="example">
+TEXT 0,7,"SCROLLING BACKGROUND"
+FOR I=0 TO 256
+  SCROLL 0,I,0
+  WAIT VBL
+NEXT I
+</pre>
+
+
+<h3 id="_SCROLL.X-SCROLL.Y" name="SCROLL.X,SCROLL.Y">=SCROLL.X/Y</h3>
+
+<pre>
+SCROLL.X(b)
+SCROLL.Y(b)
+</pre>
+
+<p>Return the scroll offset of background <em>b</em>.</p>
+
+
+<h2 id="Display-Settings">Display Settings</h2>
+
+<h3 id="_SPRITE-VIEW" name="SPRITE VIEW ON,SPRITE VIEW OFF,SPRITE,VIEW,ON,OFF,SPRITE VIEW">SPRITE VIEW ON/OFF</h3>
+
+<pre>SPRITE VIEW ON</pre>
+<pre>SPRITE VIEW OFF</pre>
+
+<p>Shows or hides the complete sprite layer without changing any of
+the sprites' settings.</p>
+
+
+<h3 id="_BG-VIEW" name="BG VIEW ON,BG VIEW OFF,BG,VIEW,ON,OFF,BG VIEW">BG VIEW ON/OFF</h3>
+
+<pre>BG VIEW ON n</pre>
+<pre>BG VIEW OFF n</pre>
+
+<p>Shows or hides background <em>n</em> (0 or 1).</p>
+
+
+<h3 id="_CELL-SIZE" name="CELL SIZE,CELL,SIZE">CELL SIZE</h3>
+
+<pre>CELL SIZE b,s</pre>
+
+<p>Sets the cell size for background <em>b</em> (0 or 1), where <em>s</em>
+can be:</p>
+
+<table>
+<tr><td>0</td> <td>1 character (8x8 pixels)</td></tr>
+<tr><td>1</td> <td>2x2 characters (16x16 pixels)</td></tr>
+</table>
+
+
+<h3 id="_PALETTE" name="PALETTE">PALETTE</h3>
+
+<pre>PALETTE n,[c0],[c1],[c2],[c3]</pre>
+
+<p>Sets all four colors of palette <em>n</em> (0-7). Color 0 is only used for
+palette 0 and shown as the screen's backdrop color. The color
+parameters can be omitted to keep their current settings.
+Valid color values are 0-63 and can be calculated like this:</p>
+<pre>
+VALUE = RED * 16 + GREEN * 4 + BLUE
+</pre>
+<p>RED, GREEN and BLUE are values from 0 to 3.</p>
+
+<p>By default all palettes are read from ROM entry 1.</p>
+
+<pre class="example">
+PRINT "COLORS!"
+WAIT 30
+PALETTE 0,48,63,63,0
+WAIT 30
+PALETTE 0,3,,,
+WAIT 30
+PALETTE 0,12,,,8
+</pre>
+
+
+<h3 id="_=COLOR" name="COLOR">=COLOR</h3>
+
+<pre>COLOR(p,n)</pre>
+
+<p>Returns the value of color <em>n</em> (0-3) from palette <em>p</em> (0-7).
+You can get the RED, GREEN and BLUE values like this:</p>
+<pre>
+RED = INT(VALUE / 16)
+GREEN = INT(VALUE / 4) MOD 4
+BLUE = VALUE MOD 4
+</pre>
+
+
+<h3 id="_ON-RASTER-CALL" name="ON RASTER CALL,ON RASTER,RASTER CALL,ON,RASTER,CALL,ON RASTER OFF,RASTER OFF,OFF">ON RASTER CALL/OFF</h3>
+
+<pre>ON RASTER CALL name</pre>
+
+<p>Sets a subprogram which is executed for every screen line before
+it's drawn. Usually used to change color palettes or scroll
+offsets to achieve graphical effects. Raster subprograms should be
+short (see <a href="#CPU-Cycles">"CPU Cycles"</a>).</p>
+
+<pre>ON RASTER OFF</pre>
+
+<p>Removes the current subprogram.</p>
+
+<pre class="example">
+ON RASTER CALL RAINBOW
+PRINT "RAINBOW WRITER"
+INPUT A$
+
+SUB RAINBOW
+  PALETTE 0,(RASTER+TIMER) MOD 64,,,
+END SUB
+</pre>
+
+
+<h3 id="_=RASTER" name="RASTER">=RASTER</h3>
+
+<pre>RASTER</pre>
+
+<p>Returns the current screen line (y position). Use this in a raster
+subprogram.</p>
+
+
+<h3 id="_ON-VBL-CALL" name="ON VBL CALL,ON VBL,VBL CALL,ON,VBL,CALL,ON VBL OFF,VBL OFF,OFF">ON VBL CALL/OFF</h3>
+
+<pre>ON VBL CALL name</pre>
+
+<p>Sets a subprogram which is executed each frame. Can be used
+to update animations or sounds, even if the main program is
+blocked by WAIT or INPUT. VBL subprograms should not be very long
+(see <a href="#CPU-Cycles">"CPU Cycles"</a>).</p>
+
+<pre>ON VBL OFF</pre>
+
+<p>Removes the current subprogram.</p>
+
+<pre class="example">
+ON VBL CALL BLINK
+PRINT "BLINK WRITER"
+INPUT A$
+
+SUB BLINK
+  PALETTE 0,TIMER MOD 64,,,
+END SUB
+</pre>
+
+
+<h3 id="_=TIMER" name="TIMER">=TIMER</h3>
+
+<pre>TIMER</pre>
+
+<p>Returns the number of frames shown since LowRes NX was started.
+The value wraps to 0 when 5184000 is reached, which is about 24
+hours.</p>
+
+
+<h1 id="Sound">Sound</h1>
+
+<p>LowRes NX has four independent sound generators (voices). Each one
+can play sawtooth, triangle, pulse and noise waveforms, and has
+frequency, volume and pulse width settings. An additional envelope
+generator and LFO per voice makes complex sounds and instruments
+possible.</p>
+<p>You can use the tool <a href="#Sound-Composer">"Sound Composer"</a> (or compatible programs) to
+create music, tracks and sound presets.</p>
+
+
+<h3 id="_MUSIC" name="MUSIC">MUSIC</h3>
+
+<pre>MUSIC [p]</pre>
+
+<p>Starts playback of a song at pattern <em>p</em>. If the parameter <em>p</em> is
+omitted, it starts at pattern 0.</p>
+
+
+<h3 id="_TRACK" name="TRACK">TRACK</h3>
+
+<pre>TRACK n,v</pre>
+
+<p>Plays track <em>n</em> once on voice <em>v</em>. Each voice can play a track
+independently, so this can be used for sound effects, even while music
+is playing.</p>
+
+
+<h3 id="_PLAY" name="PLAY">PLAY</h3>
+
+<pre>PLAY v,p[,len] [SOUND s]</pre>
+
+<p>Plays a sound on voice <em>v</em> (0-3). <em>p</em> is the pitch:</p>
+<table class="bigtable">
+    <tr><th>Note</th><th colspan="8">Pitch (with different octaves)</th></tr>
+    <tr><th>C</th><td>1</td><td>13</td><td>25</td><td>37</td><td>49</td><td>61</td><td>73</td><td>85</td></tr>
+    <tr><th>C#</th><td>2</td><td>14</td><td>26</td><td>38</td><td>50</td><td>62</td><td>74</td><td>86</td></tr>
+    <tr><th>D</th><td>3</td><td>15</td><td>27</td><td>39</td><td>51</td><td>63</td><td>75</td><td>87</td></tr>
+    <tr><th>D#</th><td>4</td><td>16</td><td>28</td><td>40</td><td>52</td><td>64</td><td>76</td><td>88</td></tr>
+    <tr><th>E</th><td>5</td><td>17</td><td>29</td><td>41</td><td>53</td><td>65</td><td>77</td><td>89</td></tr>
+    <tr><th>F</th><td>6</td><td>18</td><td>30</td><td>42</td><td>54</td><td>66</td><td>78</td><td>90</td></tr>
+    <tr><th>F#</th><td>7</td><td>19</td><td>31</td><td>43</td><td>55</td><td>67</td><td>79</td><td>91</td></tr>
+    <tr><th>G</th><td>8</td><td>20</td><td>32</td><td>44</td><td>56</td><td>68</td><td>80</td><td>92</td></tr>
+    <tr><th>G#</th><td>9</td><td>21</td><td>33</td><td>45</td><td>57</td><td>69</td><td>81</td><td>93</td></tr>
+    <tr><th>A</th><td>10</td><td>22</td><td>34</td><td>46</td><td>58</td><td>70</td><td>82</td><td>94</td></tr>
+    <tr><th>A#</th><td>11</td><td>23</td><td>35</td><td>47</td><td>59</td><td>71</td><td>83</td><td>95</td></tr>
+    <tr><th>B</th><td>12</td><td>24</td><td>36</td><td>48</td><td>60</td><td>72</td><td>84</td><td>96</td></tr>
+</table>
+
+<p>The optional parameter <em>len</em> is the length in 1/60 seconds, the maximum
+is 255. 0 means, that the the sound won't stop automatically. If the
+parameter is omitted, the current value of the voice is kept.</p>
+
+<p>By default the current sound settings of the voice are used. Add
+the SOUND parameter to use the sound number <em>s</em> from the Sound Composer
+tool.</p>
+
+<pre class="example">
+PLAY 0,49,20
+WAIT 30
+PLAY 0,53,20
+WAIT 30
+PLAY 0,56,40
+WAIT 60
+</pre>
+
+
+<h3 id="_STOP" name="STOP">STOP</h3>
+
+<pre>STOP [v]</pre>
+
+<p>Stops the current sound and track on voice <em>v</em>. If the parameter is
+omitted, all voices, tracks and music are stopped. If a voice's
+envelope has a release time, the sound won't stop immediately, but
+fade out.</p>
+
+
+<h3 id="_VOLUME" name="VOLUME">VOLUME</h3>
+
+<pre>VOLUME v,[vol],[mix]</pre>
+
+<p>Sets the volume of voice <em>n</em> (0-3) to <em>vol</em> (0-15) and its outputs to
+<em>mix</em> (0-3):</p>
+
+<table>
+<tr><td>0</td><td>Muted</td></tr>
+<tr><td>1</td><td>Left</td></tr>
+<tr><td>2</td><td>Right</td></tr>
+<tr><td>3</td><td>Left and right (center)</td></tr>
+</table>
+
+<p>All parameters can be omitted to keep their current settings.</p>
+
+
+<h3 id="_SOUND" name="SOUND">SOUND</h3>
+
+<pre>SOUND v,[w],[pw],[len]</pre>
+
+<p>Sets the basic sound parameters of voice <em>v</em> (0-3).</p>
+<p><em>w</em> is the waveform:</p>
+
+<table>
+<tr><td>0</td><td>Sawtooth</td></tr>
+<tr><td>1</td><td>Triangle</td></tr>
+<tr><td>2</td><td>Pulse</td></tr>
+<tr><td>3</td><td>Noise</td></tr>
+</table>
+
+<p><em>pw</em> is the pulse width (0-15), a value of 8 results in a square
+wave. This parameter only has an effect for the pulse waveform.</p>
+<p><em>len</em> is the sound length in 1/60 seconds, the maximum is 255. 0 means,
+that the sound won't stop automatically. If the length is set using
+this command, the length parameter of PLAY can be omitted.</p>
+<p>All parameters can be omitted to keep their current settings.</p>
+
+
+<h3 id="_ENVELOPE" name="ENVELOPE">ENVELOPE</h3>
+
+<pre>ENVELOPE v,[a],[d],[s],[r]</pre>
+
+<p>Sets the volume envelope generator of voice <em>v</em> (0-3).</p>
+<p><em>a</em> is the attack time, <em>d</em> is the decay time, and <em>r</em> is the release
+time. All times are non-linear and range from 0 (2 ms) to 15 (12 s)</p>
+<p><em>s</em> is the sustain level (0-15), which is the volume after the decay
+time and before the sound gets released.</p>
+<p>All parameters can be omitted to keep their current settings.</p>
+
+<pre class="example">
+ENVELOPE 0,1,6,8,8
+PLAY 0,49,20
+WAIT 30
+PLAY 0,53,20
+WAIT 30
+PLAY 0,56,40
+WAIT 120
+</pre>
+
+
+<h3 id="_LFO" name="LFO">LFO</h3>
+
+<pre>LFO v,[r],[fr],[vol],[pw]</pre>
+
+<p>Sets the LFO (low frequency oscillator) of voice <em>v</em> (0-3).</p>
+<p><em>r</em> is the LFO rate and ranges from 0 (0.12 Hz) to 15 (18 Hz) in a
+non-linear manner.</p>
+<p>The other paramters set the amount of the effect on different sound
+parameters: <em>fr</em> for frequency/pitch, <em>vol</em> for volume and <em>pw</em> for pulse
+width. These values range from 0 to 15.</p>
+<p>All parameters can be omitted to keep their current settings.</p>
+
+<pre class="example">
+LFO 0,12,4,0,0
+PLAY 0,49,20
+WAIT 30
+PLAY 0,53,20
+WAIT 30
+PLAY 0,56,40
+WAIT 120
+</pre>
+
+
+<h3 id="_LFO-WAVE" name="LFO WAVE,LFO,WAVE">LFO WAVE</h3>
+
+<pre>LFO WAVE v,[w],[i],[e],[t]</pre>
+
+<p>Sets options for the LFO wave of voice <em>v</em> (0-3).
+All parameters can be omitted to keep their current settings.</p>
+
+<table>
+<tr><td>w</td> <td>wave (0-3):<br/>
+0: triangle<br/>
+1: sawtooth<br/>
+2: square<br/>
+3: random</td></tr>
+<tr><td>i</td> <td>invert (0/1)</td></tr>
+<tr><td>e</td> <td>env mode enabled (0/1)</td></tr>
+<tr><td>t</td> <td>trigger enabled (0/1)</td></tr>
+</table>
+
+<p>By default the LFO adds its output to the normal sound parameters.
+If invert is enabled, it subtracts.
+By enabling the env mode, the LFO stops after one cycle, so it can
+be used as an additional envelope generator. If the trigger is
+enabled, the LFO restarts for each played sound, otherwise it runs
+continuously. Trigger is enabled implicitly with the env mode.</p>
+
+
+<h3 id="_SOUND-SOURCE" name="SOUND SOURCE,SOUND,SOURCE">SOUND SOURCE</h3>
+
+<pre>SOUND SOURCE a</pre>
+
+<p>Sets the current data source for the PLAY, MUSIC and TRACK
+commands to the memory address <em>a</em>. This only affects the following
+calls to these commands, already started playback keeps its own data
+source. The data is assumed to be in the format of the Sound Composer
+tool.</p>
+
+<p>By default ROM entry 15 is used as source.</p>
+
+
+<h3 id="_=MUSIC" name="MUSIC">=MUSIC</h3>
+
+<pre>MUSIC(n)</pre>
+
+<p>Returns the status of playing music. Specify <em>n</em> for the
+information you want to get:</p>
+
+<table>
+<tr><td>0</td><td>The current pattern</td></tr>
+<tr><td>1</td><td>The current row</td></tr>
+<tr><td>2</td><td>The current tick</td></tr>
+<tr><td>3</td><td>The current speed (0 = stopped)</td></tr>
+</table>
+
+
+<h1 id="Data">Data</h1>
+
+<h3 id="_DATA" name="DATA">DATA</h3>
+
+<pre>DATA constant-list</pre>
+
+<p>Stores comma separated numeric and string constants (values, but
+no variables or expressions) that are accessed by the READ
+command. DATA commands are not executed and may be placed
+anywhere in the program.</p>
+<p>READ commands access DATA in order, from the top of a program
+until the bottom. All constants of all DATA commands are read as
+one continuous list of items.</p>
+
+
+<h3 id="_READ" name="READ">READ</h3>
+
+<pre>READ var-list</pre>
+
+<p>Reads values from DATA commands and assigns them to the
+comma separated variables in <em>var-list</em>. The program has an internal
+pointer to the current DATA value. With each value read, the
+pointer will move to the next DATA value.</p>
+
+<pre class="example">
+FOR I=0 TO 3
+  READ TYPE$,POWER
+  PRINT TYPE$;":",POWER
+NEXT I
+DATA "LASER",10,"BLASTER",15
+DATA "PLASMA",20,"FUSION",30
+</pre>
+
+
+<h3 id="_RESTORE" name="RESTORE">RESTORE</h3>
+
+<pre>RESTORE [label]</pre>
+
+<p>Changes the internal read pointer to another position. This allows
+to reread data or to select specific data. If the label parameter
+is omitted, READ will start again from the top of the program.
+Otherwise the pointer will be set to the jump label.</p>
+
+<pre class="example">
+RESTORE SHIELDS
+FOR I=0 TO 1
+  READ TYPE$,POWER
+  PRINT TYPE$;":",POWER
+NEXT I
+DATA "LASER",10,"BLASTER",15
+SHIELDS:
+DATA "SIMPLE",30,"ADVANCED",60
+</pre>
+
+
+<h1 id="Memory-Access">Memory Access</h1>
+
+<p>LowRes NX simulates chips for graphics, sound and I/O, the cartridge
+ROM, working RAM and persistent RAM. Everything is accessible in a
+64 KB memory map, which is described in the chapter
+<a href="#Hardware-Reference">"Hardware Reference"</a>.</p>
+
+
+<h3 id="_=PEEK" name="PEEK">=PEEK</h3>
+
+<pre>PEEK(a)</pre>
+
+<p>Returns the byte value (0-255) at memory address <em>a</em>.</p>
+
+<pre class="example">
+TOUCHSCREEN
+PRINT "TOUCH!"
+DO
+  IF PEEK($FF75) AND %10 THEN
+    PRINT PEEK($FF72),PEEK($FF73)
+  END IF
+  WAIT VBL
+LOOP
+</pre>
+
+<h3 id="_POKE" name="POKE">POKE</h3>
+
+<pre>POKE a,v</pre>
+
+<p>Sets the memory at address <em>a</em> to value <em>v</em>.
+<em>v</em> is a numeric expression from 0 to 255;
+numeric expressions outside this range are truncated to 8 bits.</p>
+
+<pre class="example">
+POKE $9000,232
+POKE $9002,233
+</pre>
+
+
+<h3 id="_=PEEKW" name="PEEKW">=PEEKW</h3>
+
+<pre>PEEKW(a)</pre>
+
+<p>Returns the two-byte value (-32768 to 32767) at memory
+address <em>a</em>.</p>
+
+
+<h3 id="_POKEW" name="POKEW">POKEW</h3>
+
+<pre>POKEW a,v</pre>
+
+<p>Writes a two-byte value at memory address <em>a</em>.
+<em>v</em> is a numeric expression from -32768 to 32767;
+numeric expressions outside this range are truncated to 16 bits.</p>
+
+
+<h3 id="_=PEEKL" name="PEEKL">=PEEKL</h3>
+
+<pre>PEEKL(a)</pre>
+
+<p>Returns the four-byte value (-2147483648 to 2147483647) at
+memory address <em>a</em>.</p>
+
+
+<h3 id="_POKEL" name="POKEL">POKEL</h3>
+
+<pre>POKEL a,v</pre>
+
+<p>Writes a four-byte value at memory address <em>a</em>.
+<em>v</em> is a numeric expression from -2147483648 to 2147483647;
+numeric expressions outside this range are truncated to 32 bits.</p>
+
+<pre class="example">
+'EXAMPLE USES PERSISTENT RAM
+HI=PEEKL($E000)
+PRINT "HIGHSCORE:"
+PRINT HI
+INPUT "SCORE:";SC
+IF SC>HI THEN POKEL $E000,SC
+PRINT "RESTART!"
+</pre>
+
+
+<h3 id="_COPY" name="COPY">COPY</h3>
+
+<pre>COPY a,n TO d</pre>
+
+<p>Copies <em>n</em> bytes starting from memory address <em>a</em> to address <em>d</em>.
+The source and the destination areas may overlap.</p>
+
+<pre class="example">
+'COPY CHARACTERS FROM ROM
+'ENTRY 4 TO VIDEO RAM
+COPY ROM(4),SIZE(4) TO $8000
+</pre>
+
+
+<h3 id="_FILL" name="FILL">FILL</h3>
+
+<pre>FILL a,n[,v]</pre>
+
+<p>Sets <em>n</em> bytes starting from memory address <em>a</em> to value <em>v</em>, or 0 if
+the parameter is omitted.</p>
+
+
+<h3 id="_ROL" name="ROL">ROL</h3>
+
+<pre>ROL a,n</pre>
+
+<p>Takes the byte at address <em>a</em> and rotates its bits left by <em>n</em> places.</p>
+
+
+<h3 id="_ROR" name="ROR">ROR</h3>
+
+<pre>ROR a,n</pre>
+
+<p>Takes the byte at address <em>a</em> and rotates its bits right by <em>n</em> places.</p>
+
+
+<h3 id="_=ROM" name="ROM">=ROM</h3>
+
+<pre>ROM(n)</pre>
+
+<p>Returns the memory address of ROM entry <em>n</em>.</p>
+
+
+<h3 id="_=SIZE" name="SIZE">=SIZE</h3>
+
+<pre>SIZE(n)</pre>
+
+<p>Returns the number of bytes of ROM entry <em>n</em>.</p>
+
+
+<h1 id="Files">Файлы</h1>
+
+<p>Файловые команды можно использовать для хранения данных на
+виртуальном диске, который может содержать до 16 файлов. У них тот же
+формат, что и у записей ПЗУ в программных файлах. Это позволяет
+использовать любую NX программу как виртуальный диск и редактировать
+ее данные.</p>
+
+<p>Виртуальные диски предназначены только для использования в
+инструментах для раззработки, например в редакторах изображений и карт
+или программах для музыки. Игры же должны использовать персистентную
+память. Будем считать, что у стандартной приставки LowRes NX не было
+бы дискового накопителя.</p>
+
+
+<h3 id="_LOAD" name="LOAD">LOAD</h3>
+
+<pre>LOAD ф,а[,н[,с]]</pre>
+
+<p>Загружает файл номер <em>ф</em> с текущего виртуального диска в
+память начиная с адреса <em>а</em>.</p>
+
+<p>Дополнительный параметр <em>н</em> может указать максимальное
+число байтов, которые можно загрузить. 0 означает отсутствие предела.
+С помощью дополнительного параметра <em>с</em> можно задать смещение
+в файле.</p>
+
+<p>Команда LOAD предназначена только для использования в
+инструментах. Используйте записи ПЗУ для данных игры или
+персистентную память для сохранения статуса игры.</p>
+
+
+<h3 id="_SAVE" name="SAVE">SAVE</h3>
+
+<pre>SAVE ф,к$,а,н</pre>
+
+<p>Сохраняет <em>н</em> байтов начиная с адреса памяти <em>а</em> на текущий
+виртуальный диск как файл под номером <em>ф</em> (0-15) с комментарием <em>к$</em> (до 31 символа).</p>
+
+<p>Если до этого файл был загружен, возможно стоит сохранить его
+оригинальный комментарий или позволить пользователю изменить его перед
+сохранением. Если файл новый, в комментарий стоит включить хотя бы тип
+данных, например "SIMVOLY" или "MUZYKA".</p>
+
+<p>SAVE предназначено только для использования в инструментах. Используйте
+персистентную память для хранения состояний игры.</p>
+
+
+<h3 id="_FILES" name="FILES">FILES</h3>
+
+<pre>FILES</pre>
+
+<p>Загружает текущую файловую директорию для использования с FILE$.</p>
+
+
+<h3 id="_FILE" name="FILE$">=FILE$</h3>
+
+<pre>FILE$(ф)</pre>
+
+<p>Возвращает строку комментария файла под номером <em>f</em>. Вызовите FILES прежде чем обратиться к файловой директории, чтобы обновить ее содержимое, либо используйте FILE$ сразу после LOAD или SAVE.</p>
+
+<pre class="example">
+FILES
+FOR I=0 TO 15
+  PRINT I,FILE$(I)
+NEXT I
+</pre>
+
+
+<h3 id="_=FSIZE" name="FSIZE">=FSIZE</h3>
+
+<pre>FSIZE(н)</pre>
+
+<p>Возвращает число байтов в файле под номером <em>н</em>. Вызовите FILES прежде чем обратиться к файловой директории, чтобы обновить ее содержимое, либо используйте FSIZE сразу после LOAD или SAVE.</p>
+
+
+<h1 id="Math-Functions">Математические функции</h1>
+
+<h2 id="Trigonometric">Тригонометрические</h2>
+
+<h3 id="_PI" name="PI">=PI</h3>
+
+<pre>PI</pre>
+
+<p>PI это отношение длины окружности к ее диаметру: 3.1415926535...</p>
+
+
+<h3 id="_SIN" name="SIN">=SIN</h3>
+
+<pre>SIN(x)</pre>
+
+<p>Синус <em>x</em>, при этом <em>x</em> указывается в радианах.</p>
+
+
+<h3 id="_COS" name="COS">=COS</h3>
+
+<pre>COS(x)</pre>
+
+<p>Косинус <em>x</em>, при этом <em>x</em> указывается в радианах.</p>
+
+
+<h3 id="_TAN" name="TAN">=TAN</h3>
+
+<pre>TAN(x)</pre>
+
+<p>Тангенс <em>x</em>, при этом <em>x</em> указывается в радианах.</p>
+
+
+<h3 id="_ASIN" name="ASIN">=ASIN</h3>
+
+<pre>ASIN(x)</pre>
+
+<p>Арксинус <em>x</em>, при чем <em>x</em> должно быть в диапазоне от -1 до +1. Диапазон функции: <span class="nobr">-(PI/2)</span> &lt;= ASIN(x) &lt;= (PI/2).</p>
+
+
+<h3 id="_ACOS" name="ACOS">=ACOS</h3>
+
+<pre>ACOS(x)</pre>
+
+<p>Арккосинус <em>x</em>, при чем <em>x</em> должно быть в диапазоне от -1 до +1. Диапазон функции: 0 &lt;= ACOS(x) &lt;= PI.</p>
+
+
+<h3 id="_ATAN" name="ATAN">=ATAN</h3>
+
+<pre>ATAN(x)</pre>
+
+<p>Арктангенс <em>x</em> в радианах, то есть угол, тангенс которого равен <em>x</em>.
+Диапазон функции: <span class="nobr">-(PI/2)</span> &lt;= ATAN(x) &lt;= (PI/2).</p>
+
+
+<h3 id="_HSIN" name="HSIN">=HSIN</h3>
+
+<pre>HSIN(x)</pre>
+
+<p>Гиперболический синус <em>x</em>.</p>
+
+
+<h3 id="_HCOS" name="HCOS">=HCOS</h3>
+
+<pre>HCOS(x)</pre>
+
+<p>Гиперболический косинус <em>x</em>.</p>
+
+
+<h3 id="_HTAN" name="HTAN">=HTAN</h3>
+
+<pre>HTAN(x)</pre>
+
+<p>Гиперболический тангенс <em>x</em>.</p>
+
+
+<h2 id="Standard-Math">Стандартная математика</h2>
+
+<h3 id="_ABS" name="ABS">=ABS</h3>
+
+<pre>ABS(x)</pre>
+
+<p>Абсолютная величина <em>x</em>.</p>
+
+
+<h3 id="_SGN" name="SGN">=SGN</h3>
+
+<pre>SGN(x)</pre>
+
+<p>Знак <em>x</em>: -1 если <em>x</em> &lt; 0, 0 если <em>x</em> = 0 и +1 если <em>x</em> &gt; 0.</p>
+
+
+<h3 id="_INT" name="INT">=INT</h3>
+
+<pre>INT(x)</pre>
+
+<p>Наибольшее целое число, которое не больше <em>x</em>, например INT(1.3)
+= 1, а INT(-1.3) = -2.</p>
+
+
+<h3 id="_EXP" name="EXP">=EXP</h3>
+
+<pre>EXP(x)</pre>
+
+<p>Экспонента числа <em>x</em>, то есть значение основания натурального
+логарифма (e = 2,71828...), возведенное в степень <em>x</em>.</p>
+
+
+<h3 id="_LOG" name="LOG">=LOG</h3>
+
+<pre>LOG(x)</pre>
+
+<p>Натуральный логарифм числа <em>x</em>; <em>x</em> должно быть больше нуля.</p>
+
+
+<h3 id="_SQR" name="SQR">=SQR</h3>
+
+<pre>SQR(x)</pre>
+
+<p>Неотрицательный квадратный корень числа <em>x</em>; <em>x</em> должно быть неотрицательным.</p>
+
+
+<h2 id="Random-Sequences">Случайные последовательности</h2>
+
+<h3 id="_RND" name="RND">=RND</h3>
+
+<pre>RND</pre>
+
+<p>Следующее число в последовательности случайных чисел,
+равномерно распределенных в диапазону 0 &lt;= RND &lt; 1.</p>
+
+<pre>RND(н)</pre>
+
+<p>Второй синтаксис генерирует случайное целое число от 0 до <em>н</em> включительно.</p>
+
+
+<h3 id="_RANDOMIZE" name="RANDOMIZE,TIMER">RANDOMIZE</h3>
+<pre>RANDOMIZE x</pre>
+
+<p>Меняет зерно для случайных чисел на <em>x</em>, которое должно быть
+цеочисленным значением. По умолчанию при запуске программы зерно равно 0,
+поэтому последовательность случайных чисел всегда одна и та же.</p>
+
+<pre>RANDOMIZE TIMER</pre>
+
+<p>Если Вы хотите, чтобы случайные числа были разными при
+каждом запуске программы, то вставьте эту строку в начало кода.</p>
+
+<pre class="example">
+RANDOMIZE TIMER
+FOR I=1 TO 16
+  PRINT RND(1000)
+NEXT I
+</pre>
+
+
+<h2 id="Manipulating-Numbers">Операции с числами</h2>
+
+<h3 id="_MIN" name="MIN">=MIN</h3>
+
+<pre>MIN(x,y)</pre>
+
+<p>Функция MIN возвращает наименьшее значение из двух выражений.</p>
+
+
+<h3 id="_MAX" name="MAX">=MAX</h3>
+
+<pre>MAX(x,y)</pre>
+
+<p>Функция MIN возвращает наибольшее значение из двух выражений.</p>
+
+
+<h3 id="_SWAP" name="SWAP">SWAP</h3>
+
+<pre>SWAP переменная1,переменная2</pre>
+
+<p>Производит обмен данными между двумя переменными одного типа.</p>
+
+<pre class="example">
+A=10
+B=40
+SWAP A,B
+PRINT A
+PRINT B
+</pre>
+
+
+<h3 id="_INC" name="INC">INC</h3>
+
+<pre>INC переменная</pre>
+
+<p>Увеличивает значение переменной на один. INC A делает то же, что A=A+1, но стоит меньше циклов ЦПУ.</p>
+
+
+<h3 id="_DEC" name="DEC">DEC</h3>
+
+<pre>DEC переменная</pre>
+
+<p>Уменьшает значение переменной на один. DEC A делает то же, что A=A-1, но стоит меньше циклов ЦПУ.</p>
+
+<p></p>
+
+
+<h3 id="_ADD" name="ADD">ADD</h3>
+
+<pre>ADD переменная,x</pre>
+
+<p>Добавляет к переменной значение <em>x</em>, при этом <em>x</em> может быть положительным или отрицательным. ADD A,X делает то же, что A=A+X, но стоит меньше циклов ЦПУ.</p>
+
+<pre>ADD переменная,x,мин TO макс</pre>
+
+<p>Второй синтаксис ADD полезен для повторяющихся счетчиков.</p>
+
+<pre class="example">
+A=0
+DO
+  ADD A,2,0 TO 10
+  PRINT A
+LOOP
+</pre>
+
+<p>Это то же самое, что:</p>
+
+<pre class="example">
+A=0
+DO
+  A=A+2
+  IF A&gt;10 THEN A=0
+  IF A&lt;0 THEN A=10
+  PRINT A
+LOOP
+</pre>
+
+<p>Но опять же команда ADD стоит меньше циклов ЦПУ.</p>
+
+
+<h1 id="String-Functions">Строковые функции</h1>
+
+<h3 id="_LEFT$" name="LEFT$">=LEFT$=</h3>
+
+<pre>LEFT$(с$,н)</pre>
+
+<p>Возвращает новую строку с первыми <em>н</em> символами строки <em>с$</em>.</p>
+
+<pre class="example">
+PRINT LEFT$("LOWRES NX",3)
+</pre>
+
+<pre>LEFT$(с$,н)=а$</pre>
+
+<p>Заменяет первые символы в переменной <em>с$</em> на первые <em>н</em>
+символов строки <em>a$</em>.</p>
+
+<pre class="example">
+A$="FOORES NX"
+LEFT$(A$,3)="LOWER"
+PRINT A$
+</pre>
+
+
+<h3 id="_RIGHT$" name="RIGHT$">=RIGHT$=</h3>
+
+<pre>RIGHT$(с$,н)</pre>
+
+<p>Возвращает новую строку с последними <em>н</em> символами строки <em>с$</em>.</p>
+
+<pre>RIGHT$(с$,н)=а$</pre>
+
+<p>Заменяет последние символы в переменной <em>с$</em> на последние <em>н</em>
+символов строки <em>a$</em>.</p>
+
+
+<h3 id="_MID$" name="MID$">=MID$=</h3>
+
+<pre>MID$(с$,п,н)</pre>
+
+<p>Возвращает новую строку из <em>н</em> символов строки <em>с$</em>, начиная
+с символа <em>п</em>. Первый символ соответствует позиции 1.</p>
+
+<pre class="example">
+PRINT MID$("LOWRES NX",4,3)
+</pre>
+
+<pre>MID$(с$,п,н)=а$</pre>
+
+<p>Заменяет заданный диапазон текста в переменной <em>с$</em> на первые
+<em>н</em> символов строки <em>а$</em>.</p>
+
+<pre class="example">
+A$="LOWFOO NX"
+MID$(A$,4,3)="RESTAURANT"
+PRINT A$
+</pre>
+
+
+<h3 id="_INSTR" name="INSTR">=INSTR</h3>
+
+<pre>INSTR(д$,с$[,п])</pre>
+
+<p>Ищет первое вхождение <em>с$</em> в <em>д$</em> и возвращает его начальную позицию.
+Если найти вхождение не удается, функция возвращает 0.
+По умолчанию функция начинает искать с начала строки.
+Она также может начать искать с позиции <em>п</em>.</p>
+
+<pre class="example">
+PRINT INSTR("LOWRES NX","RES")
+</pre>
+
+
+<h3 id="_CHR$" name="CHR$">=CHR$</h3>
+
+<pre>CHR$(н)</pre>
+
+<p>Возвращает строку, содержащую один символ с кодом ASCII, равным <em>н</em>.</p>
+
+<pre class="example">
+FOR I=32 TO 90
+  PRINT CHR$(I)
+NEXT I
+</pre>
+
+
+<h3 id="_ASC" name="ASC">=ASC</h3>
+
+<pre>ASC(а$)</pre>
+
+<p>Предоставляет код ASCII первого символа в <em>а$</em>.</p>
+
+<pre class="example">
+PRINT ASC("L")
+</pre>
+
+
+<h3 id="_LEN" name="LEN">=LEN</h3>
+
+<pre>LEN(а$)</pre>
+
+<p>Возвращает число символов в <em>а$</em>.</p>
+
+
+<h3 id="_VAL" name="VAL">=VAL</h3>
+
+<pre>VAL(а$)</pre>
+
+<p>Переводит число, записанное в <em>а$</em>, в числовое значение.</p>
+
+
+<h3 id="_STR$" name="STR$">=STR$</h3>
+
+<pre>STR$(н)</pre>
+
+<p>Переводит число <em>н</em> в строку.</p>
+
+
+<h3 id="_BIN$" name="BIN$">=BIN$</h3>
+
+<pre>BIN$(н[,длн])</pre>
+
+<p>Переводит число <em>н</em> в двоичную строку длиной
+не менее <em>длн</em> цифр.</p>
+
+
+<h3 id="_HEX$" name="HEX$">=HEX$</h3>
+
+<pre>HEX$(н[,длн])</pre>
+
+<p>Переводит число <em>н</em> в шестнадцатеричную строку длиной
+не менее <em>длн</em> цифр.</p>
+
+
+<h1 id="System">Система</h1>
+
+<p>Системные команды связывают виртуальную приставку и приложение
+LowRes NX.</p>
+
+
+<h3 id="_TRACE" name="TRACE">TRACE</h3>
+
+<pre>TRACE список-выражений</pre>
+
+<p>Выводит текст в окно отладки. Выражения могут быть строками или
+числами, написанными через запятую. Эта команда игнорируется, если
+не включен режим отладки.</p>
+
+<p>Эту программу следует запускать в режиме отладки.</p>
+<pre class="example">
+'RUN IN DEBUG MODE
+A=13
+B$="GO"
+TRACE "TEST",A,B$
+</pre>
+
+
+<h3 id="_SYSTEM" name="SYSTEM">SYSTEM</h3>
+
+<pre>SYSTEM н,з</pre>
+
+<p>Присваивает системному статусу <em>н</em> значение <em>з</em>. В
+настоящее время доступен только один статус:</p>
+
+<table>
+<tr>
+<td>0</td>
+<td>Режим экономии энергии:<br/>
+Активируется, если <em>з</em> отлично от 0. В этом режиме экран
+обновляется с очень низкой частотой при отсутствии ввода от пользователя.
+Это не влияет на виртуальный процессор, код все также выполняется на
+полной скорости.
+</td>
+</tr>
+</table>
+
+
+<h1 id="Advanced-Topics">Advanced Topics</h1>
+
+<h2 id="CPU-Cycles">CPU Cycles</h2>
+
+<p>LowRes NX has a simplified simulation of CPU cycles. There is a
+fixed limit of cycles per frame. This assures the same program
+execution speed on all devices, so if you optimize your program on
+your device to run smoothly, it will run the same on all other
+devices.</p>
+
+<p>Each execution of a command, function or operator, as well as
+access to a variable or a constant count 1 cycle. Some operations have
+additional costs:</p>
+<ul>
+<li>String creation and modification count 1 cycle per letter.</li>
+<li>Array initialization counts 1 cycle per element.</li>
+<li>Memory area modification counts 1 cycle per byte (not single byte
+modifications like POKE).</li>
+<li>BG area modification and text output count 2 cycles per cell (not
+single cell modifications like CELL).</li>
+</ul>
+
+<table>
+<tr><td>Total cycles per frame</td><td>17556</td></tr>
+<tr><td>Cycles per VBL interrupt</td><td>1140</td></tr>
+<tr><td>Cycles per raster interrupt</td><td>51</td></tr>
+</table>
+
+<p>The main program may spend any number of cycles, but when the limit
+is reached before a WAIT VBL or WAIT command, the execution continues
+in the next frame. If interrupts exceed their limit, you will see
+black scanlines on the screen.</p>
+
+
+<h2 id="Hardware-Reference">Аппаратная справка</h2>
+
+<h3 id="Memory-Map">Схема памяти</h3>
+
+<pre>
+$0000 - ПЗУ картриджа (32 КБ)
+
+$8000 - Данные символов (4 КБ)
+$9000 - Данные фона 0 (2 КБ)
+$9800 - Данные фона 1 (2 КБ)
+
+$A000 - Оперативная память (16 КБ)
+
+$E000 - Персистентная память (4 КБ)
+
+$FE00 - Регистры спрайтов (256 Б)
+$FF00 - Регистры цветов (32 Б)
+$FF20 - Регистры видео
+$FF40 - Регистры аудио
+$FF70 - Регистры ввода-вывода
+</pre>
+
+<h3 id="Character-Data">Данные символов</h3>
+
+<p>Символ это изображение размером 8x8 пикселей, по 2 бита на
+пиксель, суммарный размер составляет 16 байт. Видеопамять вмещает
+256 символов.</p>
+
+<p>Первые 8 байтов символа содержат младшие биты всех его пикселей,
+а за ними следует еще 8 байт со старшими битами всех пикселей.</p>
+
+<h3 id="BG-Data">Данные фонов</h3>
+
+<p>Фон это карта размером 32x32 символьных ячейки. Каждая ячейка занимает
+два байта:</p>
+<pre>
+- Номер символа
+- Атрибуты:
+    Бит  Назначение
+    0-2  Номер палитры
+    3    Отражение по X
+    4    Отражение по Y
+    5    Приоритет
+    6-7  Не используется
+</pre>
+
+<h3 id="Persistent-RAM">Персистентная память</h3>
+
+<p>Представляйте ее как поддерживаемое аккумулятором ЗУПД на игровом
+картиридже. Используйте ее для данных вроде положения в игре или
+рекордов. Содержимое персистентной памяти будет автоматически
+сохраняться при выходе из программы и загружаться при запуске. Каждая
+программа сохраняет свою персистентную память отдельно.</p>
+
+<h3 id="Sprite-Registers">Регистры спрайтов</h3>
+
+<p>Всего доступно 64 спрайта, каждый из них занимает 4 байта:</p>
+<pre>
+- Позиция по X
+- Позиция по Y
+- Номер символа
+- Атрибуты:
+    Бит  Назначение
+    0-2  Номер палитры
+    3    Отражение по X
+    4    Отражение по Y
+    5    Приоритет
+    6-7  Размер:
+         0: 1 символ (8x8 пикс.)
+         1: 2x2 символа (16x16 пикс.)
+         2: 3x3 символа (24x24 пикс.)
+         3: 4x4 символа (32x32 пикс.)
+</pre>
+<p>Заметьте, значения регистров позиций спрайтов по X и Y смещены
+на 32, таким образом они могут выходить за верхнюю и левую границы
+экрана не переходя в отрицательные числа. При использовании команд
+Бейсика это смещение для удобства убрано.</p>
+
+<h3 id="Color-Registers">Регистры цветов</h3>
+
+<p>Существует 8 палитр по 4 цвета в каждой. Один цвет это один байт:</p>
+<pre>
+Биты  Компонент
+0-1   Синий
+2-3   Зеленый
+4-5   Красный
+</pre>
+
+<h3 id="Video-Registers">Регистры видео</h3>
+
+<pre>
+$FF20 - Атрибуты:
+    Бит  Назначение
+    0    Спрайты включены
+    1    Фон 0 включен
+    2    Фон 1 включен
+    3    Размер ячейки фона 0,
+    4    Размер ячейки фона 1:
+         0: 1 символ (8x8 пикс.)
+            (Фон 256x256 пикс.)
+         1: 2x2 символа (16x16 пикс.)
+            (Фон 512x512 пикс.)
+
+$FF21 - Смещение прокрутки фона 0 по X
+$FF22 - Смещение прокрутки фона 0 по Y
+$FF23 - Смещение прокрутки фона 1 по X
+$FF24 - Смещение прокрутки фона 1 по Y
+$FF25 - Старшие биты смещений прокрутки
+    используются только при ячейках большого размера:
+    Бит  Назначение
+    0    Фон 0, X+256
+    1    Фон 0, Y+256
+    2    Фон 1, X+256
+    3    Фон 1, Y+256
+
+$FF26 - Растровая строка
+</pre>
+
+<h3 id="Audio-Registers">Audio Registers</h3>
+
+<p>There are registers for 4 voices:</p>
+<pre>
+$FF40 - Voice 0
+$FF4C - Voice 1
+$FF58 - Voice 2
+$FF64 - Voice 3
+</pre>
+
+<p>Each voice occupies 12 bytes:</p>
+<pre>
+- Frequency low-byte
+- Frequency high-byte
+- Status:
+    Bit  Purpose
+    0-3  Volume
+    4    Mix to left
+    5    Mix to right
+    6    Init
+    7    Gate
+- Peak meter (read only)
+- Attributes:
+    Bit  Purpose
+    0-3  Pulse width
+    4-5  Wave:
+         0: Sawtooth
+         1: Triangle
+         2: Pulse
+         3: Noise
+    6    Timeout enabled
+- Length (timeout)
+- Envelope byte 1:
+    Bit  Purpose
+    0-3  Attack
+    4-7  Decay
+- Envelope byte 2:
+    Bit  Purpose
+    0-3  Sustain
+    4-7  Release
+- LFO attributes:
+    Bit  Purpose
+    0-1  Wave:
+         0: Triangle
+         1: Sawtooth
+         2: Square
+         3: Random
+    2    Invert
+    3    Env mode enabled
+    4    Trigger enabled
+- LFO settings byte 1:
+    Bit  Purpose
+    0-3  LFO Rate
+    4-7  Frequency amount
+- LFO settings byte 2:
+    Bit  Purpose
+    0-3  Volume amount
+    4-7  Pulse width amount
+- Reserved
+</pre>
+<p>Note: The frequency is a 16-bit value: f = hertz * 16</p>
+
+
+<h3 id="I-O-Registers">Регистры входа-выхода</h3>
+
+<pre>
+$FF70 - Статус геймпада 0
+$FF71 - Статус геймпада 1
+
+Статус геймпада:
+    Бит  Назначение
+    0    Вверх
+    1    Вниз
+    2    Влево
+    3    Вправо
+    4    Кнопка A
+    5    Кнопка B
+
+$FF72 - Позиция последнего касания по X
+$FF73 - Позиция последнего касания по Y
+$FF74 - Последняя нажатая клавиша (код ASCII)
+$FF75 - Статус:
+    Бит  Назначение
+    0    Кнопка паузы
+    1    Касание
+
+$FF76 - Атрибуты:
+    Бит  Назначение
+    0-1  Геймпады подключены:
+         0: Отключены
+         1: Игрок 1
+         2: Игрок 2
+    2    Клавиатура подключена
+    3    Сенсорный экран подключен
+</pre>
+
+
+<h2 id="Sound-Data-Format">Sound Data Format</h2>
+
+<p>This is the format used for the PLAY, MUSIC and TRACK commands.
+It's valid to store only the sound presets, if no MUSIC or TRACK
+commands are used with this data. If any tracks are available, all
+patterns must be stored. Empty tracks after the last used one don't
+need to be stored.</p> 
+
+<pre>
+Offset - Content
+0      - 16 sound presets
+128    - 64 patterns
+384    - 64 tracks
+</pre>
+
+<p>Each sound preset occupies 8 bytes and matches the format of the
+audio registers of one voice, but without the first 4 bytes.</p>
+
+<p>Each pattern occupies 4 bytes:</p>
+<pre>
+- Voice 0:
+    Bit  Purpose
+    0-6  Track index
+         (64 = voice unused)
+    7    Flag loop start
+- Voice 1:
+    Bit  Purpose
+    0-6  Track index
+         (64 = voice unused)
+    7    Flag loop end
+- Voice 2:
+    Bit  Purpose
+    0-6  Track index
+         (64 = voice unused)
+    7    Flag song stop
+- Voice 3:
+    Bit  Purpose
+    0-6  Track index
+         (64 = voice unused)
+</pre>
+
+<p>Each track occupies 96 bytes and consists of 32 entries with each 3
+bytes:</p>
+<pre>
+- Note pitch (0 = empty)
+- Data (ignored if note is 0):
+    Bit  Purpose
+    0-3  Volume
+    4-7  Sound
+- Control:
+    Bit  Purpose
+    0-3  Parameter
+    4-7  Command
+</pre>
+
+
+<h2 id="Obsolete-Syntaxes" name="SPRITE.A,ATTR,DISPLAY,LFO.A">Устаревшие синтаксисы</h2>
+
+<p>Эти команды, функции и синтаксисы больше не рекомендуются к
+применению и могут быть удалены в будущих версиях.</p>
+
+<pre>SPRITE.A н,(пал,отр-x,отр-y,при,р)</pre>
+
+<p>Используйте <a href="#_SPRITE">SPRITE</a> (новый синтаксис) или <a href="#_SPRITE.A">SPRITE.A</a>
+(только одиночное значение).</p>
+
+<pre>ATTR (пал,отр-x,отр-y,при,р)[,м]</pre>
+<pre>ATTR а,м</pre>
+
+<p>Используйте <a href="#_PAL">PAL</a>, <a href="#_FLIP">FLIP</a>, <a href="#_PRIO">PRIO</a> или <a href="#_ATTR">ATTR</a> (только одиночные значения).
+Используйте <a href="#_TINT">TINT</a> и <a href="#_BG-TINT">BG TINT</a> для смены масок атрибутов.</p>
+
+<pre>DISPLAY (р,ф0,ф1,я0,я1)</pre>
+<pre>DISPLAY а</pre>
+
+<p>Используйте <a href="#_BG-VIEW">BG VIEW ON/OFF</a>, <a href="#_SPRITE-VIEW">SPRITE VIEW ON/OFF</a> и <a href="#_CELL-SIZE">CELL SIZE</a>.</p>
+
+<pre>DISPLAY</pre>
+
+<p>Используйте <a href="#_=PEEK">PEEK($FF20)</a>.</p>
+
+<pre>LFO.A г,(в,р,о,т)</pre>
+
+<p>Используйте <a href="#_LFO-WAVE">LFO WAVE</a>.</p>
+
+
+<h2 id="Reserved-Keywords">Зарезервированные ключевые слова</h2>
+
+<p>Ниже приведен список зарезервированных слов, использующихся в
+Бейсике LowRes NX. Если использовать их как названия переменных,
+будет сгенерирована синтаксическая ошибка.</p>
+
+<p>Ключевые слова, помеченные звездочкой, пока нигде не
+применяются, но зарезервированы для будущих версий.</p>
+
+<p>
+ABS,
+ACOS,
+ADD,
+AND,
+ANIM*,
+ASC,
+ASIN,
+ATAN,
+ATTR,
+BG,
+BIN$,
+BUTTON,
+CALL,
+CELL,
+CELL.A,
+CELL.C,
+CHAR,
+CHR$,
+CLOSE*,
+CLS,
+CLW,
+COLOR,
+COPY,
+COS,
+DATA,
+DEC,
+DECLARE*,
+DEF*,
+DIM,
+DISPLAY,
+DO,
+DOWN,
+ELSE,
+END,
+ENVELOPE,
+EXIT,
+EXP,
+FILE$,
+FILES,
+FILL,
+FLASH*,
+FLIP,
+FN*,
+FONT,
+FOR,
+FSIZE,
+FUNCTION*,
+GAMEPAD,
+GLOBAL,
+GOSUB,
+GOTO,
+HCOS,
+HEX$,
+HIT,
+HSIN,
+HTAN,
+IF,
+INC,
+INKEY$,
+INPUT,
+INSTR,
+INT,
+KEYBOARD,
+LBOUND*,
+LEFT$,
+LEFT,
+LEN,
+LET,
+LFO,
+LFO.A,
+LOAD,
+LOCATE,
+LOG,
+LOOP,
+MAX,
+MCELL,
+MCELL.A,
+MCELL.C,
+MID$,
+MIN,
+MOD,
+MUSIC,
+NEXT,
+NOT,
+NUMBER,
+OFF,
+ON,
+OPEN*,
+OPTIONAL,
+OR,
+OUTPUT*,
+PAL,
+PALETTE,
+PAUSE,
+PEEK,
+PEEKL,
+PEEKW,
+PI,
+PLAY,
+POKE,
+POKEL,
+POKEW,
+PRINT,
+PRIO,
+RANDOMIZE,
+RASTER,
+READ,
+REM,
+REPEAT,
+RESTORE,
+RETURN,
+RIGHT$,
+RIGHT,
+RND,
+ROL,
+ROM,
+ROR,
+SAVE,
+SCROLL,
+SCROLL.X,
+SCROLL.Y,
+SGN,
+SHARED*,
+SIN,
+SIZE,
+SOUND,
+SOURCE,
+SPRITE,
+SPRITE.A,
+SPRITE.C,
+SPRITE.X,
+SPRITE.Y,
+SQR,
+STATIC*,
+STEP,
+STOP,
+STR$,
+SUB,
+SWAP,
+SYSTEM,
+TAN,
+TAP,
+TEMPO*,
+TEXT,
+THEN,
+TIMER,
+TINT,
+TO,
+TOUCH,
+TOUCH.X,
+TOUCH.Y,
+TOUCHSCREEN,
+TRACE,
+TRACK,
+UBOUND,
+UNTIL,
+UP,
+VAL,
+VBL,
+VIEW,
+VOICE*,
+VOLUME,
+WAIT,
+WAVE,
+WEND,
+WHILE,
+WINDOW,
+WRITE*,
+XOR
+</p>
+
+</div>
+</body>
+</html>
